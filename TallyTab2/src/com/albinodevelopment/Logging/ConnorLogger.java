@@ -11,9 +11,9 @@ package com.albinodevelopment.Logging;
  */
 public class ConnorLogger {
 
-    private static boolean on = true;
+    public static boolean on = true;
 
-    private static Priority threshold = Priority.zero;
+    private static Priority threshold = Priority.extreme;
 
     public static enum Priority {
         zero,
@@ -27,6 +27,10 @@ public class ConnorLogger {
         if (on && priority.ordinal() >= threshold.ordinal()) {
             System.out.println(priority.toString().toUpperCase() + ": " + message);
         }
+    }
+
+    public static void setPriority(Priority priority) {
+       threshold = priority;
     }
 
 }
