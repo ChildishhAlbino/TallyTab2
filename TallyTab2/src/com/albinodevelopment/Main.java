@@ -5,17 +5,19 @@
  */
 package com.albinodevelopment;
 
+import com.albinodevelopment.Logging.ConnorLogger;
+
 /**
  *
  * @author conno
  */
 public class Main {
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ConnorLogger.log("Hello, World!", ConnorLogger.Priority.zero);
     }
     
 }
