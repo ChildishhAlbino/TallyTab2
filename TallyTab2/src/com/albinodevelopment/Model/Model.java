@@ -9,6 +9,6 @@ package com.albinodevelopment.Model;
  *
  * @author conno
  */
-public class Model {
-    
+public class Model extends Content {
+
 }

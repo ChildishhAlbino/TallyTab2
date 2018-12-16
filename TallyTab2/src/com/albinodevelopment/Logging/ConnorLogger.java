@@ -13,7 +13,7 @@ public class ConnorLogger {
 
     public static boolean on = true;
 
-    private static Priority threshold = Priority.extreme;
+    private static Priority threshold = Priority.low;
 
     public static enum Priority {
         zero,
@@ -30,7 +30,7 @@ public class ConnorLogger {
     }
 
     public static void setPriority(Priority priority) {
-       threshold = priority;
+        threshold = priority;
     }
 
 }

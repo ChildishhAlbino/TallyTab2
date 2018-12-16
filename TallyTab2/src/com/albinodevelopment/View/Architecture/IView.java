@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.albinodevelopment.Controller;
+package com.albinodevelopment.View.Architecture;
 
 /**
  *
  * @author conno
  */
-public class Controller {
+public interface IView {
 
 }
