@@ -22,7 +22,7 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
 
     public ViewComponent() {
         view = View.getInstance();
-        
+
     }
 
     public Parent getFromTemplate() {

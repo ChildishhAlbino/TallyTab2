@@ -35,7 +35,7 @@ public class MainWindow extends Window implements Initializable {
     @FXML
     private void handleNewButton(ActionEvent event) {
         Tab tab = new Tab("LMAO");
-        
+
         tabPane.getTabs().add(tab);
     }
 

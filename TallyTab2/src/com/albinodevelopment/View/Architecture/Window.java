@@ -11,10 +11,10 @@ import javafx.stage.Stage;
  *
  * @author conno
  */
-public abstract class Window extends ViewComponent {
+public abstract class Window extends OutputViewComponent implements IWindow{
 
     protected String title;
-    protected Stage stage;
+    private Stage stage;
 
     public Stage getStage() {
         return stage;
@@ -32,4 +32,15 @@ public abstract class Window extends ViewComponent {
         this.title = title;
     }
 
+    @Override
+    public void hide() {
+        stage.hide();
+    }
+
+    @Override
+    public void show() {
+        stage.show();
+    }
+
+    
 }

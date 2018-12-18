@@ -25,10 +25,10 @@ public class ViewComponentParent implements IViewComponentParent {
     @Override
     public <T> Collection getChildren(Class<T> classFilter) {
         ArrayList<T> childrenOfType = new ArrayList<>();
-        
-        for(ViewComponent child : children){
+
+        for (ViewComponent child : children) {
             Class childClass = child.getClass();
-            if(classFilter.isInstance(child)){
+            if (classFilter.isInstance(child)) {
                 ConnorLogger.log("Child was of class - " + classFilter.toString(), ConnorLogger.Priority.zero);
                 childrenOfType.add(classFilter.cast(child));
             }

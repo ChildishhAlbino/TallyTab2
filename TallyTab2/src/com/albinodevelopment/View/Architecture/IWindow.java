@@ -5,17 +5,11 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import javafx.scene.Parent;
-
 /**
  *
  * @author conno
  */
-public interface ITemplateLoader {
-
-    ContentDisplayer getContentDisplayer(String fxml);
-
-    ViewComponent getViewComponent(String fmxl);
-
-    <T extends ViewComponent> T getClassFromTemplate(String fxml, Class<T> clazz);
-} 
+interface IWindow {
+    void show();
+    void hide();
+}

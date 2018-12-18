@@ -14,5 +14,6 @@ import java.util.Collection;
 public interface IViewComponentParent {
 
     Collection getChildren();
+
     <T> Collection getChildren(Class<T> classFilter);
 }

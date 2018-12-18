@@ -5,17 +5,15 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import javafx.scene.Parent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author conno
  */
-public interface ITemplateLoader {
+public interface IOutput {
 
-    ContentDisplayer getContentDisplayer(String fxml);
-
-    ViewComponent getViewComponent(String fmxl);
-
-    <T extends ViewComponent> T getClassFromTemplate(String fxml, Class<T> clazz);
-} 
+    void output(String messsage);
+    void cycle();
+}

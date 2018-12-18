@@ -48,4 +48,23 @@ public class FXMLTemplateLoader implements ITemplateLoader {
         return null;
     }
 
+    @Override
+    public <T extends ViewComponent> T getClassFromTemplate(String fxml, Class<T> clazz) {
+         fxmlLoader.setLocation(getClass().getResource(fxml));
+        try {
+            Parent parent = fxmlLoader.load();
+            T t = fxmlLoader.getController();
+            if(clazz.isInstance(t)){
+                t.setFromTemplate(parent);
+                return t;
+            } else {
+                ConnorLogger.log("Document controller was not of type: " + clazz.toString(), ConnorLogger.Priority.extreme);
+            }
+        } catch (IOException ex) {
+            ConnorLogger.log(ex.getLocalizedMessage(), ConnorLogger.Priority.high);
+        }
+
+        return null;
+    }
+
 }
