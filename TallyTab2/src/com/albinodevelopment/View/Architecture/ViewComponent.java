@@ -19,6 +19,7 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
 
     protected final View view;
     private Parent fromTemplate;
+    private ViewComponentParent parent;
 
     public ViewComponent() {
         view = View.getInstance();
@@ -31,6 +32,14 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
 
     public void setFromTemplate(Parent fromTemplate) {
         this.fromTemplate = fromTemplate;
+    }
+
+    public ViewComponentParent getParent() {
+        return parent;
+    }
+
+    public void setParent(ViewComponentParent parent) {
+        this.parent = parent;
     }
 
 }
