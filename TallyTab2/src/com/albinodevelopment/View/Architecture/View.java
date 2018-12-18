@@ -5,8 +5,6 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import com.albinodevelopment.Logging.ConnorLogger;
-import com.albinodevelopment.View.Home.MainWindow;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

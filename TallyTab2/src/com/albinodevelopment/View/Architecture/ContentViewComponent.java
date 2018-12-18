@@ -11,8 +11,14 @@ import javafx.scene.Parent;
 /**
  *
  * @author conno
+ * @param <U> The type of IContent this component uses to update it's children.
  */
-public interface IContentDisplayer<U extends IContent> {
+public abstract class ContentViewComponent<U extends IContent> extends ViewComponent implements IContentViewComponent<U> {
 
-    Parent generate(U content);
+    private U content;
+
+    public U getContent() {
+        return content;
+    }
+
 }

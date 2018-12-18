@@ -19,11 +19,11 @@ public class FXMLTemplateLoader implements ITemplateLoader {
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
     @Override
-    public ContentDisplayer getContentDisplayer(String fxml) {
+    public ContentViewComponent getContentDisplayer(String fxml) {
         fxmlLoader.setLocation(getClass().getResource(fxml));
         try {
             Parent parent = fxmlLoader.load();
-            ContentDisplayer contentDisplayer = fxmlLoader.getController();
+            ContentViewComponent contentDisplayer = fxmlLoader.getController();
             contentDisplayer.setFromTemplate(parent);
             return contentDisplayer;
         } catch (IOException ex) {

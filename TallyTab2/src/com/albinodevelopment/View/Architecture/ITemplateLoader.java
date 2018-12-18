@@ -13,7 +13,7 @@ import javafx.scene.Parent;
  */
 public interface ITemplateLoader {
 
-    ContentDisplayer getContentDisplayer(String fxml);
+    ContentViewComponent getContentDisplayer(String fxml);
 
     ViewComponent getViewComponent(String fmxl);
 
