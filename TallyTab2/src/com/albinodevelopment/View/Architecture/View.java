@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.View.Home.MainWindow;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -27,23 +28,23 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public void start(Stage stage) {
-//        ViewComponent viewComponent = TemplateLoaderFactory.getLoader().getViewComponent("../Home/MainWindowFXML.fxml");
-//        Scene scene = new Scene(viewComponent.getFromTemplate());
-//        stage.setScene(scene);
-//        children.add(viewComponent);
-//        stage.show();
-        Window window = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Home/MainWindowFXML.fxml", MainWindow.class);
-        Scene scene = new Scene(window.getFromTemplate());
-        stage.setScene(scene);
-        stage.setOnCloseRequest((event) -> {
+        Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
+        window.getStage().setOnCloseRequest((event) -> {
             Platform.runLater(() -> {
                 System.exit(0);
             });
         });
+        children.add(window);
+    }
+
+    public static <T extends Window> T newWindow(String fxml, Class<T> clazz, Stage stage) {
+        T window = TemplateLoaderFactory.getLoader().getClassFromTemplate(fxml, clazz);
+        Scene scene = new Scene(window.getFromTemplate());
+        stage.setScene(scene);
         window.setStage(stage);
-        window.output("Test message.");
-        window.output("Test message 2.");
         window.show();
+
+        return window;
     }
 
 }
