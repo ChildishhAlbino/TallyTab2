@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,7 +19,7 @@ import javafx.scene.control.TextField;
  *
  * @author conno
  */
-public class NewFunctionWindowFXMLController implements Initializable {
+public class NewFunctionWindowFXMLController extends Window implements Initializable {
 
     @FXML
     private TextField functionNameTF;
