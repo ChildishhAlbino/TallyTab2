@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  *
  * @author conno
  */
-public class NewFunctionWindowFXMLController extends Window implements Initializable {
+public class NewFunctionWindowController extends Window implements Initializable {
 
     @FXML
     private TextField functionNameTF;

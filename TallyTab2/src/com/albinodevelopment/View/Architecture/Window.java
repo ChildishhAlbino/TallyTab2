@@ -40,6 +40,7 @@ public abstract class Window extends OutputViewComponent implements IWindow{
     @Override
     public void show() {
         stage.show();
+        stage.requestFocus();
     }
 
     
