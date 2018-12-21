@@ -16,17 +16,17 @@ import javafx.stage.Stage;
  * @author conno
  */
 public class View extends ViewComponentParent implements IView {
-
+    
     private static View instance;
-
+    
     public static View getInstance() {
         if (instance == null) {
             instance = new View();
         }
-
+        
         return instance;
     }
-
+    
     public void start(Stage stage) {
         Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
         window.getStage().setOnCloseRequest((event) -> {
@@ -34,34 +34,35 @@ public class View extends ViewComponentParent implements IView {
                 System.exit(0);
             });
         });
-
+        
         linkChildAndParent(this, window);
     }
-
+    
     public static <T extends Window> T newWindow(String fxml, Class<T> clazz, Stage stage) {
         T window = TemplateLoaderFactory.getLoader().getClassFromTemplate(fxml, clazz);
         Scene scene = new Scene(window.getFromTemplate());
         stage.setScene(scene);
         window.setStage(stage);
         window.show();
-
+        
         return window;
     }
-
+    
     public static void linkChildAndParent(ViewComponentParent parent, ViewComponent child) {
         parent.children.add(child);
         child.setParent(parent);
     }
-
+    
     public void openNewFunctionWindow() {
         Collection<Window> newFunctionWindows = getChildren(NewFunctionWindowController.class);
         if (newFunctionWindows.isEmpty()) {
-            Window window = newWindow("../Function/NewFunctionWindowFXML.fxml", NewFunctionWindowController.class, new Stage());
+            Stage stage = new Stage();
+            Window window = newWindow("../Function/NewFunctionWindowFXML.fxml", NewFunctionWindowController.class, stage);
             children.add(window);
         } else {
             Window window = newFunctionWindows.stream().findFirst().get();
             window.show();
         }
     }
-
+    
 }

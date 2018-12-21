@@ -16,4 +16,6 @@ public interface IViewComponentParent {
     Collection getChildren();
 
     <T> Collection getChildren(Class<T> classFilter);
+
+    void remove(ViewComponent child);
 }

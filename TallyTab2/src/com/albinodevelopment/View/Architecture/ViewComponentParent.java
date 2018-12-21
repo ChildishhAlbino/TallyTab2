@@ -36,4 +36,11 @@ public class ViewComponentParent implements IViewComponentParent {
         return childrenOfType;
     }
 
+    @Override
+    public void remove(ViewComponent child) {
+        children.remove(child);
+        System.gc(); 
+        ConnorLogger.log("VCParent removed child" + child.toString(), ConnorLogger.Priority.low);
+    }
+
 }
