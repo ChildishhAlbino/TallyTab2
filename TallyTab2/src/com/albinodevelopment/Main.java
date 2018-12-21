@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment;
 
+import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.View.Architecture.View;
 import javafx.application.Application;
@@ -26,6 +27,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ConnorLogger.log("Program started.", ConnorLogger.Priority.extreme);
+        if (!FileIO.fileStructureExists()) {
+            ConnorLogger.log("Program file structure didn't exist. Attempting to create new structure.", ConnorLogger.Priority.extreme);
+            if (FileIO.createFileStructure() == false) {
+                System.exit(0);
+            } else {
+                ConnorLogger.log("Program file structure created successfully!", ConnorLogger.Priority.extreme);
+            }
+        }
         View view = View.getInstance();
         view.start(primaryStage);
     }
