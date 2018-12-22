@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
+import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Logging.ConnorLogger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +14,7 @@ import java.util.Collection;
  *
  * @author conno
  */
-public class ViewComponentParent implements IViewComponentParent {
+public abstract class ViewComponentParent implements IViewComponentParent, ICommandHandler<ViewCommand> {
 
     protected ArrayList<ViewComponent> children = new ArrayList<>();
 
@@ -27,7 +28,6 @@ public class ViewComponentParent implements IViewComponentParent {
         ArrayList<T> childrenOfType = new ArrayList<>();
 
         for (ViewComponent child : children) {
-            Class childClass = child.getClass();
             if (classFilter.isInstance(child)) {
                 ConnorLogger.log("Child was of class - " + classFilter.toString(), ConnorLogger.Priority.zero);
                 childrenOfType.add(classFilter.cast(child));
@@ -39,7 +39,7 @@ public class ViewComponentParent implements IViewComponentParent {
     @Override
     public void remove(ViewComponent child) {
         children.remove(child);
-        System.gc(); 
+        System.gc();
         ConnorLogger.log("VCParent removed child: " + child.toString(), ConnorLogger.Priority.low);
     }
 

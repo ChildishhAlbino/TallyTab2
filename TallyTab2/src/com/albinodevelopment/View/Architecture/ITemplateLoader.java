@@ -18,4 +18,4 @@ public interface ITemplateLoader {
     ViewComponent getViewComponent(String fmxl);
 
     <T extends ViewComponent> T getClassFromTemplate(String fxml, Class<T> clazz);
-} 
+}

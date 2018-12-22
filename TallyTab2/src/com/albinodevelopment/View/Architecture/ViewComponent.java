@@ -13,13 +13,8 @@ import javafx.scene.Parent;
  */
 public abstract class ViewComponent extends ViewComponentParent implements IViewComponent {
 
-    protected final View view;
     private Parent fromTemplate;
     private ViewComponentParent parent;
-
-    public ViewComponent() {
-        view = View.getInstance();
-    }
 
     @Override
     public Parent getFromTemplate() {
@@ -37,6 +32,11 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
 
     public void setParent(ViewComponentParent parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public boolean handle(ViewCommand command) {
+        return parent.handle(command);
     }
 
 }

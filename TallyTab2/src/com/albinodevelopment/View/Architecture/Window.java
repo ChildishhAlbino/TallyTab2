@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  *
  * @author conno
  */
-public abstract class Window extends OutputViewComponent implements IWindow{
+public abstract class Window extends OutputViewComponent implements IWindow {
 
     protected String title;
     private Stage stage;
@@ -43,5 +43,4 @@ public abstract class Window extends OutputViewComponent implements IWindow{
         stage.requestFocus();
     }
 
-    
 }

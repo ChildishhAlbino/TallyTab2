@@ -46,7 +46,7 @@ public class FunctionTemplateController extends Window implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void saveFunctionButtonAction(ActionEvent event) {
@@ -59,5 +59,5 @@ public class FunctionTemplateController extends Window implements Initializable 
     @FXML
     private void editLimitButtonAction(ActionEvent event) {
     }
-    
+
 }

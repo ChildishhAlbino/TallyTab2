@@ -18,17 +18,7 @@ import javafx.stage.Stage;
  *
  * @author conno
  */
-public class View extends ViewComponentParent implements IView, ICommandHandler<ViewCommand> {
-
-    private static View instance;
-
-    public static View getInstance() {
-        if (instance == null) {
-            instance = new View();
-        }
-
-        return instance;
-    }
+public class View extends ViewComponentParent implements IView {
 
     public void start(Stage stage) {
         Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
@@ -61,7 +51,7 @@ public class View extends ViewComponentParent implements IView, ICommandHandler<
         if (newFunctionWindows.isEmpty()) {
             Stage stage = new Stage();
             Window window = newWindow("../Function/NewFunctionWindowFXML.fxml", NewFunctionWindowController.class, stage);
-            children.add(window);
+            linkChildAndParent(this, window);
         } else {
             Window window = newFunctionWindows.stream().findFirst().get();
             window.show();
@@ -71,7 +61,7 @@ public class View extends ViewComponentParent implements IView, ICommandHandler<
     @Override
     public boolean handle(ViewCommand command) {
         boolean response = true;
-        if (command.execute(instance) == ICommand.commandResult.failure) {
+        if (command.execute(this) == ICommand.commandResult.failure) {
             ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
             response = false;
         }

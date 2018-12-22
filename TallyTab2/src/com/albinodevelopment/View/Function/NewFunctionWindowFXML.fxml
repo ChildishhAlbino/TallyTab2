@@ -12,73 +12,73 @@
 <?import javafx.scene.text.Font?>
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.albinodevelopment.View.Function.NewFunctionWindowController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.rowIndex="1">
-         <children>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="Function Title" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="functionNameTF" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" prefWidth="237.0" promptText="Please enter a name for your function" />
-         </children>
-      </VBox>
-      <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="NEW FUNCTION WINDOW" textAlignment="CENTER" GridPane.columnSpan="2">
-         <font>
-            <Font name="System Bold" size="43.0" />
-         </font>
-      </Label>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="Function Limit" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="functionLimitTF" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" prefWidth="237.0" promptText="Leave blank for no limit" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.rowIndex="2">
-         <children>
-            <Button mnemonicParsing="false" onAction="#onSelectMenuButtonAction" prefHeight="64.0" prefWidth="197.0" text="Press to select a Menu!" />
-            <Label fx:id="selectedMenuLabel" alignment="CENTER" prefHeight="25.0" prefWidth="773.0" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <Button mnemonicParsing="false" onAction="#onSubmitButtonAction" prefHeight="64.0" prefWidth="185.0" text="SUBMIT">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#onCancelButtonAction" prefHeight="64.0" prefWidth="185.0" text="CANCEL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-         <padding>
-            <Insets left="50.0" right="50.0" />
-         </padding>
-      </HBox>
-      <Label fx:id="output" alignment="CENTER" prefHeight="25.0" prefWidth="600.0" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="3">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-   </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.rowIndex="1">
+            <children>
+                <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="Function Title" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="functionNameTF" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" prefWidth="237.0" promptText="Please enter a name for your function" />
+            </children>
+        </VBox>
+        <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="NEW FUNCTION WINDOW" textAlignment="CENTER" GridPane.columnSpan="2">
+            <font>
+                <Font name="System Bold" size="43.0" />
+            </font>
+        </Label>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <Label alignment="CENTER" prefHeight="25.0" prefWidth="773.0" text="Function Limit" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="functionLimitTF" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="16.0" prefWidth="237.0" promptText="Leave blank for no limit" />
+            </children>
+        </VBox>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.rowIndex="2">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onSelectMenuButtonAction" prefHeight="64.0" prefWidth="197.0" text="Press to select a Menu!" />
+                <Label fx:id="selectedMenuLabel" alignment="CENTER" prefHeight="25.0" prefWidth="773.0" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onSubmitButtonAction" prefHeight="64.0" prefWidth="185.0" text="SUBMIT">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onCancelButtonAction" prefHeight="64.0" prefWidth="185.0" text="CANCEL">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets left="50.0" right="50.0" />
+            </padding>
+        </HBox>
+        <Label fx:id="output" alignment="CENTER" prefHeight="25.0" prefWidth="600.0" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+    </children>
 </GridPane>

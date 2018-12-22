@@ -10,5 +10,5 @@ package com.albinodevelopment.Model;
  * @author conno
  */
 public class ModelCommand {
-    
+
 }

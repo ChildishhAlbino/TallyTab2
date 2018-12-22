@@ -10,6 +10,8 @@ package com.albinodevelopment.View.Architecture;
  * @author conno
  */
 interface IWindow {
+
     void show();
+
     void hide();
 }

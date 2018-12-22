@@ -64,7 +64,7 @@ public class FileIO {
         new File(getApplicationDirectory()).mkdir();
         new File(getFunctionDirectory()).mkdir();
         new File(getMenuDirectory()).mkdir();
-        
+
         return fileStructureExists();
     }
 

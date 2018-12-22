@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Home;
 
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +35,7 @@ public class MainWindow extends Window implements Initializable {
 
     @FXML
     private void handleNewButton(ActionEvent event) {
-        view.openNewFunctionWindow();
+        getParent().handle(new ViewCommand.OpenNewFunctionWindowCommand());
     }
 
     @FXML

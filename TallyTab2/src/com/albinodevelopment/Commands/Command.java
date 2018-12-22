@@ -9,7 +9,7 @@ package com.albinodevelopment.Commands;
  *
  * @author conno
  */
-public abstract class Command<U extends ICommandHandler> implements ICommand {
+public abstract class Command<U extends ICommandHandler> implements ICommand<U> {
 
     protected String errorCode;
 
@@ -17,5 +17,5 @@ public abstract class Command<U extends ICommandHandler> implements ICommand {
     public String getErrorCode() {
         return errorCode;
     }
-    
+
 }

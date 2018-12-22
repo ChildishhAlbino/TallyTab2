@@ -71,7 +71,7 @@
                                         </Button>
                                     </children>
                                 </HBox>
-                        <Label fx:id="output" alignment="CENTER" textAlignment="CENTER" wrapText="true" />
+                                <Label fx:id="output" alignment="CENTER" textAlignment="CENTER" wrapText="true" />
                                 <Label text="Connor Williams 2018" />
                             </children>
                         </VBox>

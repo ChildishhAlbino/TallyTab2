@@ -35,7 +35,7 @@ public class Main extends Application {
                 ConnorLogger.log("Program file structure created successfully!", ConnorLogger.Priority.extreme);
             }
         }
-        View view = View.getInstance();
+        View view = new View();
         view.start(primaryStage);
     }
 

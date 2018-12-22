@@ -10,5 +10,5 @@ package com.albinodevelopment.Controller;
  * @author conno
  */
 public class ControllerCommand {
-    
+
 }

@@ -11,6 +11,25 @@ import com.albinodevelopment.Commands.Command;
  *
  * @author conno
  */
-public abstract class ViewCommand extends Command<View>{
-    
+public abstract class ViewCommand extends Command<View> {
+
+    public static class PassToControllerCommand extends ViewCommand {
+
+        @Override
+        public commandResult execute(View commandHandler) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    }
+
+    public static class OpenNewFunctionWindowCommand extends ViewCommand {
+
+        @Override
+        public commandResult execute(View commandHandler) {
+            commandHandler.openNewFunctionWindow();
+            return commandResult.success;
+        }
+
+    }
+
 }

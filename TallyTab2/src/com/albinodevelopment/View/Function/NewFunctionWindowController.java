@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -56,8 +57,8 @@ public class NewFunctionWindowController extends Window implements Initializable
     @Override
     public void setStage(Stage stage) {
         super.setStage(stage); //To change body of generated methods, choose Tools | Templates.
-        getStage().setOnCloseRequest((event) -> {
-            view.remove(this);
+        getStage().setOnCloseRequest((WindowEvent event) -> {
+            getParent().remove(this);
         });
         stage.initModality(Modality.APPLICATION_MODAL);
     }
