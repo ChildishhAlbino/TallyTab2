@@ -15,6 +15,4 @@ import javafx.scene.control.Label;
 public interface IOutput {
 
     void output(String messsage);
-
-    void cycle();
 }

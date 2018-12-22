@@ -26,35 +26,51 @@ public class OutputViewComponent extends ViewComponent implements IOutput {
 
     private final Timer timer;
 
-    private final Long CYCLE_TIME = 3500L;
+    private final Long MESSAGE_LENGTH = 3500L;
 
     public OutputViewComponent() {
         this.backlog = new ArrayList<>();
         this.timer = new Timer("outputTimer");
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    cycle();
-                });
-            }
-        }, 0, CYCLE_TIME);
+
     }
 
     @Override
     public void output(String messsage) {
+        if (backlog.isEmpty()) {
+            output.setText(messsage);
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        cycle();
+                    });
+
+                }
+            }, MESSAGE_LENGTH);
+        }
         backlog.add(messsage);
+        ConnorLogger.log(backlog.toString(), ConnorLogger.Priority.low);
     }
 
-    @Override
-    public void cycle() {
-        if (backlog.size() > 0) {
-            ConnorLogger.log(backlog.toString(), ConnorLogger.Priority.low);
-            output.setText(backlog.get(0));
+    void cycle() {
+        if (output.getText().equals("") == false) {
             backlog.remove(0);
-        } else {
-            output.setText("");
+            ConnorLogger.log(backlog.toString(), ConnorLogger.Priority.low);
+            if (backlog.size() > 0) {           
+                output.setText(backlog.get(0));
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(() -> {
+                            cycle();
+                        });
+                    }
+                }, MESSAGE_LENGTH);
+            } else {
+                output.setText("");
+            }
         }
+
     }
 
 }
