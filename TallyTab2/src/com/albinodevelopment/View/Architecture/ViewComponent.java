@@ -5,11 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import com.albinodevelopment.Model.IContent;
-import java.util.Collection;
-import java.util.HashMap;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 
 /**
  *
@@ -23,13 +19,14 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
 
     public ViewComponent() {
         view = View.getInstance();
-
     }
 
+    @Override
     public Parent getFromTemplate() {
         return fromTemplate;
     }
 
+    @Override
     public void setFromTemplate(Parent fromTemplate) {
         this.fromTemplate = fromTemplate;
     }

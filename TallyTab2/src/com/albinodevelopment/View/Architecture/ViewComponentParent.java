@@ -40,7 +40,7 @@ public class ViewComponentParent implements IViewComponentParent {
     public void remove(ViewComponent child) {
         children.remove(child);
         System.gc(); 
-        ConnorLogger.log("VCParent removed child" + child.toString(), ConnorLogger.Priority.low);
+        ConnorLogger.log("VCParent removed child: " + child.toString(), ConnorLogger.Priority.low);
     }
 
 }
