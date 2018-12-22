@@ -5,10 +5,12 @@
  */
 package com.albinodevelopment.Controller;
 
+import com.albinodevelopment.Commands.Command;
+
 /**
  *
  * @author conno
  */
-public class ControllerCommand {
-
+public abstract class ControllerCommand extends Command<Controller>{
+    
 }

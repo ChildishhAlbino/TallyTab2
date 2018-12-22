@@ -31,9 +31,6 @@ public class NewFunctionWindowController extends Window implements Initializable
     @FXML
     private Label selectedMenuLabel;
 
-    public NewFunctionWindowController() {
-    }
-
     /**
      * Initializes the controller class.
      */
@@ -50,10 +47,6 @@ public class NewFunctionWindowController extends Window implements Initializable
     private void onSubmitButtonAction(ActionEvent event) {
     }
 
-    @FXML
-    private void onCancelButtonAction(ActionEvent event) {
-    }
-
     @Override
     public void setStage(Stage stage) {
         super.setStage(stage); //To change body of generated methods, choose Tools | Templates.
@@ -62,5 +55,5 @@ public class NewFunctionWindowController extends Window implements Initializable
         });
         stage.initModality(Modality.APPLICATION_MODAL);
     }
-
+    
 }

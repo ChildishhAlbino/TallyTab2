@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
  *
  * @author conno
  */
-public class OutputViewComponent extends ViewComponent implements IOutput {
+public abstract class OutputViewComponent extends ViewComponent implements IOutput {
 
     @FXML
     private Label output;
@@ -56,7 +56,7 @@ public class OutputViewComponent extends ViewComponent implements IOutput {
         if (output.getText().equals("") == false) {
             backlog.remove(0);
             ConnorLogger.log(backlog.toString(), ConnorLogger.Priority.low);
-            if (backlog.size() > 0) {           
+            if (backlog.size() > 0) {
                 output.setText(backlog.get(0));
                 timer.schedule(new TimerTask() {
                     @Override

@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
 import java.util.ResourceBundle;

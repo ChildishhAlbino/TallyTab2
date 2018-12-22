@@ -5,10 +5,12 @@
  */
 package com.albinodevelopment.Model;
 
+import com.albinodevelopment.Commands.Command;
+
 /**
  *
  * @author conno
  */
-public class ModelCommand {
+public abstract class ModelCommand extends Command<Model>{
 
 }

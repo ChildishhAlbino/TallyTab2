@@ -5,8 +5,10 @@
  */
 package com.albinodevelopment;
 
+import com.albinodevelopment.Controller.Controller;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Model;
 import com.albinodevelopment.View.Architecture.View;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -36,6 +38,13 @@ public class Main extends Application {
             }
         }
         View view = new View();
+        Model model = new Model();
+        Controller controller = new Controller();
+        
+        view.setCommandHandler(controller);
+        controller.setCommandHandler(model);
+        model.setCommandHandler(view);
+        
         view.start(primaryStage);
     }
 

@@ -7,6 +7,7 @@ package com.albinodevelopment.View.Architecture;
 
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
+import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
 import java.util.Collection;
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
  * @author conno
  */
 public class View extends ViewComponentParent implements IView {
+
+    private ICommandHandler<ControllerCommand> commandHandler;
 
     public void start(Stage stage) {
         Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
@@ -67,6 +70,10 @@ public class View extends ViewComponentParent implements IView {
         }
 
         return response;
+    }
+
+    public void setCommandHandler(ICommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
     }
 
 }
