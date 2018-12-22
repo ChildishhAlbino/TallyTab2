@@ -19,6 +19,11 @@ public class Model extends Content implements ICommandHandler<ModelCommand> {
     private ICommandHandler<ViewCommand> commandHandler;
 
     @Override
+    public ICommandHandler<ViewCommand> getCommandHandler() {
+        return commandHandler;
+    }
+
+    @Override
     public boolean handle(ModelCommand command) {
         boolean response = true;
         if (command.execute(this) == ICommand.commandResult.failure) {
@@ -32,5 +37,6 @@ public class Model extends Content implements ICommandHandler<ModelCommand> {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
+
 
 }

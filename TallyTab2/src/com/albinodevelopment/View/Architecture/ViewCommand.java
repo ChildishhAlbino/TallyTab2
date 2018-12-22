@@ -6,6 +6,7 @@
 package com.albinodevelopment.View.Architecture;
 
 import com.albinodevelopment.Commands.Command;
+import com.albinodevelopment.Controller.ControllerCommand;
 
 /**
  *
@@ -15,9 +16,15 @@ public abstract class ViewCommand extends Command<View> {
 
     public static class PassToControllerCommand extends ViewCommand {
 
+        private final ControllerCommand command;
+
+        public PassToControllerCommand(ControllerCommand command) {
+            this.command = command;
+        }
+
         @Override
         public commandResult execute(View commandHandler) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            return commandResult.success;
         }
 
     }

@@ -15,9 +15,14 @@ import com.albinodevelopment.Model.ModelCommand;
  * @author conno
  */
 public class Controller implements ICommandHandler<ControllerCommand> {
-    
+
     private ICommandHandler<ModelCommand> commandHandler;
-    
+
+    @Override
+    public ICommandHandler<ModelCommand> getCommandHandler() {
+        return commandHandler;
+    }
+
     @Override
     public boolean handle(ControllerCommand command) {
         boolean response = true;
@@ -32,7 +37,5 @@ public class Controller implements ICommandHandler<ControllerCommand> {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
-
-
 
 }

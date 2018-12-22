@@ -23,6 +23,11 @@ public class View extends ViewComponentParent implements IView {
 
     private ICommandHandler<ControllerCommand> commandHandler;
 
+    @Override
+    public ICommandHandler<ControllerCommand> getCommandHandler() {
+        return commandHandler;
+    }
+
     public void start(Stage stage) {
         Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
         window.getStage().setOnCloseRequest((event) -> {
@@ -75,5 +80,6 @@ public class View extends ViewComponentParent implements IView {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
+
 
 }

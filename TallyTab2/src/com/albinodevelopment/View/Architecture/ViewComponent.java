@@ -5,6 +5,8 @@
  */
 package com.albinodevelopment.View.Architecture;
 
+import com.albinodevelopment.Commands.ICommand;
+import com.albinodevelopment.Commands.ICommandHandler;
 import javafx.scene.Parent;
 
 /**
@@ -39,4 +41,9 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
         return parent.handle(command);
     }
 
+    @Override
+    public ICommandHandler getCommandHandler() {
+        return parent.getCommandHandler();
+    }
+    
 }
