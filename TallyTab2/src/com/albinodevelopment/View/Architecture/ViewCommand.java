@@ -24,7 +24,8 @@ public abstract class ViewCommand extends Command<View> {
 
         @Override
         public commandResult execute(View commandHandler) {
-            return commandResult.success;
+            return commandHandler.getCommandHandler().handle(command);
+
         }
 
     }

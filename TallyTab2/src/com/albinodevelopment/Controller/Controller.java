@@ -24,11 +24,11 @@ public class Controller implements ICommandHandler<ControllerCommand> {
     }
 
     @Override
-    public boolean handle(ControllerCommand command) {
-        boolean response = true;
+    public ICommand.commandResult handle(ControllerCommand command) {
+        ICommand.commandResult response = ICommand.commandResult.success;
         if (command.execute(this) == ICommand.commandResult.failure) {
             ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
-            response = false;
+            response = ICommand.commandResult.failure;
         }
 
         return response;

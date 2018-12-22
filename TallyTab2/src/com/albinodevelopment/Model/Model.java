@@ -24,11 +24,11 @@ public class Model extends Content implements ICommandHandler<ModelCommand> {
     }
 
     @Override
-    public boolean handle(ModelCommand command) {
-        boolean response = true;
+    public ICommand.commandResult handle(ModelCommand command) {
+        ICommand.commandResult response = ICommand.commandResult.success;
         if (command.execute(this) == ICommand.commandResult.failure) {
             ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
-            response = false;
+            response = ICommand.commandResult.failure;
         }
 
         return response;
@@ -37,6 +37,5 @@ public class Model extends Content implements ICommandHandler<ModelCommand> {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
-
 
 }

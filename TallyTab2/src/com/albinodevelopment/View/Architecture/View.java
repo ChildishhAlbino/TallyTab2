@@ -67,11 +67,11 @@ public class View extends ViewComponentParent implements IView {
     }
 
     @Override
-    public boolean handle(ViewCommand command) {
-        boolean response = true;
+    public ICommand.commandResult handle(ViewCommand command) {
+        ICommand.commandResult response = ICommand.commandResult.success;
         if (command.execute(this) == ICommand.commandResult.failure) {
             ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
-            response = false;
+            response = ICommand.commandResult.failure;
         }
 
         return response;
