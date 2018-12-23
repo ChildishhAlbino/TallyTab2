@@ -43,6 +43,10 @@ public class FunctionTab extends Content {
         initTally();
     }
 
+    public Double getPercent() {
+        return percent;
+    }
+
     public FunctionTab(Double limit, Double currentBalance, Menu menu, Double percent) {
         this.limit = limit;
         this.currentBalance = currentBalance;

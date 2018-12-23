@@ -63,13 +63,14 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
     }
 
     @Override
-    public Parent generate(Function content) {
+    public Parent generate(Function content) { 
         setContent(content);
         title.setText(content.getTitle());
         currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
         limit.setText(String.valueOf(content.getTab().getLimit()));
-
+        percentage.setText(String.valueOf(content.getTab().getPercent()));
+        progressBar.setProgress(content.getTab().getPercent());
         return getFromTemplate();
     }
-
+    
 }
