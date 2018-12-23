@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.albinodevelopment.Model;
+package com.albinodevelopment.IO.XML;
 
 /**
  *
  * @author conno
  */
-public class Content implements IContent {
-
+public interface XML_able{
+    
 }

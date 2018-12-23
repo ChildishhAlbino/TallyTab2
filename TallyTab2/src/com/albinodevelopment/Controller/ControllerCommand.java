@@ -6,7 +6,7 @@
 package com.albinodevelopment.Controller;
 
 import com.albinodevelopment.Commands.Command;
-import com.albinodevelopment.Model.ModelCommand;
+import com.albinodevelopment.Model.Architechture.ModelCommand;
 
 /**
  *

@@ -5,6 +5,8 @@
  */
 package com.albinodevelopment.Model;
 
+import com.albinodevelopment.Model.Architechture.Content;
+import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Logging.ConnorLogger;
@@ -14,7 +16,7 @@ import com.albinodevelopment.View.Architecture.ViewCommand;
  *
  * @author conno
  */
-public class Model extends Content implements ICommandHandler<ModelCommand> {
+public class Model implements ICommandHandler<ModelCommand> {
 
     private ICommandHandler<ViewCommand> commandHandler;
 

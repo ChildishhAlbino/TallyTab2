@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.albinodevelopment.Model;
+package com.albinodevelopment.Model.Architechture;
 
 import com.albinodevelopment.Commands.Command;
+import com.albinodevelopment.Model.Model;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 
 /**

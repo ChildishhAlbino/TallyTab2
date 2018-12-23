@@ -8,7 +8,7 @@ package com.albinodevelopment.Controller;
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Logging.ConnorLogger;
-import com.albinodevelopment.Model.ModelCommand;
+import com.albinodevelopment.Model.Architechture.ModelCommand;
 
 /**
  *

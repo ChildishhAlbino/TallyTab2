@@ -5,9 +5,19 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.IO.FileIO;
+import com.albinodevelopment.IO.XML.JAXBParser;
+import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.Model.Components.FunctionTab;
+import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javax.xml.bind.JAXBException;
 
 /**
  * FXML Controller class
@@ -45,6 +56,7 @@ public class NewFunctionWindowController extends Window implements Initializable
 
     @FXML
     private void onSubmitButtonAction(ActionEvent event) {
+       
     }
 
     @Override
@@ -55,5 +67,5 @@ public class NewFunctionWindowController extends Window implements Initializable
         });
         stage.initModality(Modality.APPLICATION_MODAL);
     }
-    
+
 }

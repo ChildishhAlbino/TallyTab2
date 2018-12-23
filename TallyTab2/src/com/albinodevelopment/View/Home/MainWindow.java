@@ -34,7 +34,7 @@ public class MainWindow extends Window implements Initializable {
 
     @FXML
     private void handleNewButton(ActionEvent event) {
-        getParent().handle(new ViewCommand.OpenNewFunctionWindowCommand());
+        handle(new ViewCommand.OpenNewFunctionWindowCommand());
     }
 
     @FXML

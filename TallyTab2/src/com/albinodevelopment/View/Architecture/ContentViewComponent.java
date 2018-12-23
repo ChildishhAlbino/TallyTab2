@@ -5,7 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import com.albinodevelopment.Model.IContent;
+import com.albinodevelopment.Model.Architechture.IContent;
 import javafx.scene.Parent;
 
 /**
