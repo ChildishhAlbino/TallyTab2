@@ -56,4 +56,20 @@ public abstract class ModelCommand extends Command<Model> {
 
     }
 
+    public static class RemoveFunctionCommand extends ModelCommand {
+
+        private final String title;
+
+        public RemoveFunctionCommand(String title) {
+            this.title = title;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            commandHandler.remove(title);
+            return CommandResult.success;
+        }
+
+    }
+
 }
