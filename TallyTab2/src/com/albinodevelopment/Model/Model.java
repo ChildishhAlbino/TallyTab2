@@ -5,12 +5,14 @@
  */
 package com.albinodevelopment.Model;
 
-import com.albinodevelopment.Model.Architechture.Content;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.View.Architecture.ViewCommand;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +21,7 @@ import com.albinodevelopment.View.Architecture.ViewCommand;
 public class Model implements ICommandHandler<ModelCommand> {
 
     private ICommandHandler<ViewCommand> commandHandler;
+    private ArrayList<Function> functions = new ArrayList<>();
 
     @Override
     public ICommandHandler<ViewCommand> getCommandHandler() {
@@ -38,6 +41,43 @@ public class Model implements ICommandHandler<ModelCommand> {
 
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+    }
+
+    public Function newFunction(String functionName, FunctionTab tab) {
+        Function f = null;
+        if (!contains(functionName)) {
+            f = new Function(functionName, tab, new ArrayList<>());
+            functions.add(f);
+        }
+
+        return f;
+    }
+
+    public boolean contains(String functionName) {
+        return getByName(functionName) != null;
+    }
+
+    public boolean remove(String functionName) {
+        Function function = getByName(functionName);
+        boolean response = false;
+        if (function != null) {
+            functions.remove(function);
+            response = true;
+        }
+
+        return response;
+    }
+
+    public Function getByName(String functionName) {
+        Function f = null;
+        for (Function function : functions) {
+            if (f.getTitle().equals(functionName)) {
+                f = function;
+                break;
+            }
+        }
+
+        return f;
     }
 
 }
