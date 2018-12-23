@@ -58,11 +58,11 @@ public class NewFunctionWindowController extends Window implements Initializable
         try {
             String functionTitle = (functionNameTF.getText().equals("") ? null : functionNameTF.getText());
             String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
-            
+
             Menu menu = new Menu("Test");
             menu.add(new MenuItem(50d, "Test item."));
-            
-            JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory() + "//TestMenu.xml" , menu);
+
+            JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory() + "//TestMenu.xml", menu);
             handle(new ViewCommand.PassToControllerCommand(
                     new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, FileIO.getMenuDirectory() + "//TestMenu.xml", this)));
         } catch (JAXBException ex) {

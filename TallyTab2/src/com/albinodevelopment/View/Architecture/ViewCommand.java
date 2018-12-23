@@ -56,7 +56,7 @@ public abstract class ViewCommand extends Command<View> {
             Collection<Window> col = commandHandler.getChildren(NewFunctionWindowController.class);
             col.iterator().next().close();
             commandHandler.GenerateFunctionGUI(function);
-            
+
             return commandResult.success;
         }
 

@@ -33,7 +33,7 @@ public class FunctionTab extends Content {
     public FunctionTab() {
 
     }
-    
+
     public FunctionTab(Double limit, Menu menu) {
         this.limit = limit;
         this.currentBalance = 0d;

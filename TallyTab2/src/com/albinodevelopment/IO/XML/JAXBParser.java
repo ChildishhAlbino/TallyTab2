@@ -16,28 +16,28 @@ import javax.xml.bind.Unmarshaller;
  * @author conno
  */
 public class JAXBParser {
-    
+
     private JAXBContext jaxbContext;
 //    private Class clazz; 
-    
-    public <T> JAXBParser(Class<T> clazz) throws JAXBException{
+
+    public <T> JAXBParser(Class<T> clazz) throws JAXBException {
         jaxbContext = JAXBContext.newInstance(clazz);
 //        this.clazz = clazz;
     }
-    
+
     public boolean write(String directory, XML_able toXML) throws JAXBException {
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.marshal(toXML, new File(directory));
         return true;
     }
 
-    public <T> T read(Class<T> clazz, String directory) throws JAXBException{
+    public <T> T read(Class<T> clazz, String directory) throws JAXBException {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         T t = clazz.cast(unmarshaller.unmarshal(new File(directory)));
         return t;
     }
-    
-    public static <T> JAXBParser getParser(Class <T> clazz) throws JAXBException{
+
+    public static <T> JAXBParser getParser(Class<T> clazz) throws JAXBException {
         return new JAXBParser(clazz);
     }
 }

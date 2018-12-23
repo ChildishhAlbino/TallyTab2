@@ -14,6 +14,6 @@ interface IWindow {
     void show();
 
     void hide();
-    
+
     void close();
 }

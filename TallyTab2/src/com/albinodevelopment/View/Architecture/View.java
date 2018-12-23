@@ -84,8 +84,8 @@ public class View extends ViewComponentParent implements IView {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
-    
-    public void GenerateFunctionGUI(Function function){
+
+    public void GenerateFunctionGUI(Function function) {
         Collection<MainWindow> col = getChildren(MainWindow.class);
         col.iterator().next().newTab(function);
     }

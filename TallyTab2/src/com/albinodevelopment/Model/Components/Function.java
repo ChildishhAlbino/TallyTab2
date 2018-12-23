@@ -33,7 +33,7 @@ public class Function extends Content {
         this.tab = tab;
         this.notes = notes;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -53,7 +53,5 @@ public class Function extends Content {
         s += tab.toString();
         return s;
     }
-    
-    
-    
+
 }

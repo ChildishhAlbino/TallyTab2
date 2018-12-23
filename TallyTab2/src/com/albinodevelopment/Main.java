@@ -40,11 +40,11 @@ public class Main extends Application {
         View view = new View();
         Model model = new Model();
         Controller controller = new Controller();
-        
+
         view.setCommandHandler(controller);
         controller.setCommandHandler(model);
         model.setCommandHandler(view);
-        
+
         view.start(primaryStage);
     }
 

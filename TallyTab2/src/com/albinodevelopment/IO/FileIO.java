@@ -17,13 +17,13 @@ public class FileIO {
     private static final String MENU_SUBFOLDER = "/Menus";
     private static final String FUNCTION_SUBFOLDER = "/Functions";
     private static final String DEFAULT_DIRECTORY = getLocalAppFolder() + RELATIVE_FOLDER_PATH;
-    
+
     private static final String ILLEGAL_CHARACTERS = "[\\Q /\\?! \\E]";
 
     public static String getIllegalCharacters() {
         return ILLEGAL_CHARACTERS;
     }
-    
+
     public static String getApplicationDirectory() {
         return DEFAULT_DIRECTORY;
     }
@@ -73,5 +73,5 @@ public class FileIO {
 
         return fileStructureExists();
     }
-    
+
 }

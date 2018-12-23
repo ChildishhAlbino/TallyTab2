@@ -45,7 +45,7 @@ public abstract class ModelCommand extends Command<Model> {
         @Override
         public commandResult execute(Model commandHandler) {
             Function function = commandHandler.newFunction(title, functionTab);
-            if(function == null){
+            if (function == null) {
                 errorCode = "Error creating function for some reason.";
                 return commandResult.failure;
             } else {

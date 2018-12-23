@@ -27,7 +27,7 @@ import javafx.scene.control.TabPane;
  * @author conno
  */
 public class MainWindow extends Window implements Initializable {
-
+    
     @FXML
     private TabPane tabPane;
 
@@ -38,32 +38,32 @@ public class MainWindow extends Window implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
     @FXML
     private void handleNewButton(ActionEvent event) {
         handle(new ViewCommand.OpenNewFunctionWindowCommand());
     }
-
+    
     @FXML
     private void handleOpenButton(ActionEvent event) {
     }
-
+    
     @FXML
     private void handleSaveButton(ActionEvent event) {
     }
-
+    
     @FXML
     private void handleCloseButton(ActionEvent event) {
     }
-
+    
     @FXML
     private void handleDrinksListButton(ActionEvent event) {
     }
-
+    
     @FXML
     private void handlePreferencesButton(ActionEvent event) {
     }
-
+    
     public void newTab(Function function) {
         Tab tab = new Tab(function.getTitle());
         ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/FunctionTemplateFXML.fxml", FunctionTemplateController.class);
@@ -76,5 +76,5 @@ public class MainWindow extends Window implements Initializable {
             remove(cvc);
         });
     }
-
+    
 }

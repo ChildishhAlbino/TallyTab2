@@ -20,8 +20,8 @@ public abstract class ContentViewComponent<U extends IContent> extends ViewCompo
     public U getContent() {
         return content;
     }
-    
-    public void setContent(U content){
+
+    public void setContent(U content) {
         this.content = content;
     }
 }

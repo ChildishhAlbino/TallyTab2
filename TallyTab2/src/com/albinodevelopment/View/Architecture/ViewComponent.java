@@ -45,5 +45,5 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
     public ICommandHandler getCommandHandler() {
         return parent.getCommandHandler();
     }
-    
+
 }

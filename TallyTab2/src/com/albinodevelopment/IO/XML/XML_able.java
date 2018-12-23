@@ -9,6 +9,6 @@ package com.albinodevelopment.IO.XML;
  *
  * @author conno
  */
-public interface XML_able{
-    
+public interface XML_able {
+
 }
