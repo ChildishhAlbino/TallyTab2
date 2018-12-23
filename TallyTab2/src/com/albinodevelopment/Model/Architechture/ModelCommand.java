@@ -26,7 +26,7 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
         @Override
-        public commandResult execute(Model commandHandler) {
+        public CommandResult execute(Model commandHandler) {
             return commandHandler.getCommandHandler().handle(command);
         }
 
@@ -43,15 +43,15 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
         @Override
-        public commandResult execute(Model commandHandler) {
+        public CommandResult execute(Model commandHandler) {
             Function function = commandHandler.newFunction(title, functionTab);
             if (function == null) {
-                errorCode = "Error creating function for some reason.";
-                return commandResult.failure;
+                errorCode = "Function: " + title + " already exists.";
+                return CommandResult.failure;
             } else {
                 commandHandler.handle(new PassToViewCommand(new ViewCommand.GenerateFunctionGUICommand(function)));
             }
-            return commandResult.success;
+            return CommandResult.success;
         }
 
     }

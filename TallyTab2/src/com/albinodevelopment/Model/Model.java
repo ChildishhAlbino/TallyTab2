@@ -29,13 +29,13 @@ public class Model implements ICommandHandler<ModelCommand> {
     }
 
     @Override
-    public ICommand.commandResult handle(ModelCommand command) {
-        ICommand.commandResult response = ICommand.commandResult.success;
-        if (command.execute(this) == ICommand.commandResult.failure) {
+    public ICommand.CommandResult handle(ModelCommand command) {
+        ICommand.CommandResult response = ICommand.CommandResult.success;
+        if (command.execute(this) == ICommand.CommandResult.failure) {
             if (command.getErrorCode() != null) {
                 ConnorLogger.log(command.getClass().getSimpleName() + ": " + command.getErrorCode(), ConnorLogger.Priority.medium);
             }
-            response = ICommand.commandResult.failure;
+            response = ICommand.CommandResult.failure;
         }
 
         return response;

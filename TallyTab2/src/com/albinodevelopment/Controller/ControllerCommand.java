@@ -25,7 +25,7 @@ public abstract class ControllerCommand extends Command<Controller> {
         }
 
         @Override
-        public commandResult execute(Controller commandHandler) {
+        public CommandResult execute(Controller commandHandler) {
             return commandHandler.getCommandHandler().handle(command);
         }
 
@@ -47,15 +47,18 @@ public abstract class ControllerCommand extends Command<Controller> {
 
         @Override
 
-        public commandResult execute(Controller commandHandler) {
+        public CommandResult execute(Controller commandHandler) {
             if (commandHandler.validateNewFunction(source, title, limit, filePath)) {
                 FunctionTab functionTab = new FunctionTab(commandHandler.validateLimit(limit), commandHandler.validateMenu(filePath));
-                commandHandler.handle(new PassToModelCommand(new ModelCommand.NewFunctionCommand(title, functionTab)));
+                CommandResult result = commandHandler.handle(new PassToModelCommand(new ModelCommand.NewFunctionCommand(title, functionTab)));
+                if(result == CommandResult.failure){
+                    source.output("Function already exists.");
+                }
             } else {
                 errorCode = "Function could not be validated.";
-                return commandResult.failure;
+                return CommandResult.failure;
             }
-            return commandResult.success;
+            return CommandResult.success;
         }
 
     }

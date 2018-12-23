@@ -69,13 +69,13 @@ public class View extends ViewComponentParent implements IView {
     }
 
     @Override
-    public ICommand.commandResult handle(ViewCommand command) {
-        ICommand.commandResult response = ICommand.commandResult.success;
-        if (command.execute(this) == ICommand.commandResult.failure) {
+    public ICommand.CommandResult handle(ViewCommand command) {
+        ICommand.CommandResult response = ICommand.CommandResult.success;
+        if (command.execute(this) == ICommand.CommandResult.failure) {
             if (command.getErrorCode() != null) {
                 ConnorLogger.log(command.getClass().getSimpleName() + ": " + command.getErrorCode(), ConnorLogger.Priority.medium);
             }
-            response = ICommand.commandResult.failure;
+            response = ICommand.CommandResult.failure;
         }
 
         return response;

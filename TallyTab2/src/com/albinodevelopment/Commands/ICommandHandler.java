@@ -12,7 +12,7 @@ package com.albinodevelopment.Commands;
  */
 public interface ICommandHandler<U extends ICommand> {
 
-    ICommand.commandResult handle(U command);
+    ICommand.CommandResult handle(U command);
 
     ICommandHandler getCommandHandler();
 }

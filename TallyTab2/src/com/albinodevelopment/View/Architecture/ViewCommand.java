@@ -26,7 +26,7 @@ public abstract class ViewCommand extends Command<View> {
         }
 
         @Override
-        public commandResult execute(View commandHandler) {
+        public CommandResult execute(View commandHandler) {
             return commandHandler.getCommandHandler().handle(command);
 
         }
@@ -36,9 +36,9 @@ public abstract class ViewCommand extends Command<View> {
     public static class OpenNewFunctionWindowCommand extends ViewCommand {
 
         @Override
-        public commandResult execute(View commandHandler) {
+        public CommandResult execute(View commandHandler) {
             commandHandler.openNewFunctionWindow();
-            return commandResult.success;
+            return CommandResult.success;
         }
 
     }
@@ -52,12 +52,12 @@ public abstract class ViewCommand extends Command<View> {
         }
 
         @Override
-        public commandResult execute(View commandHandler) {
+        public CommandResult execute(View commandHandler) {
             Collection<Window> col = commandHandler.getChildren(NewFunctionWindowController.class);
             col.iterator().next().close();
             commandHandler.GenerateFunctionGUI(function);
 
-            return commandResult.success;
+            return CommandResult.success;
         }
 
     }

@@ -37,7 +37,7 @@ public abstract class ViewComponent extends ViewComponentParent implements IView
     }
 
     @Override
-    public ICommand.commandResult handle(ViewCommand command) {
+    public ICommand.CommandResult handle(ViewCommand command) {
         return parent.handle(command);
     }
 

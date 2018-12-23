@@ -12,12 +12,12 @@ package com.albinodevelopment.Commands;
  */
 public interface ICommand<U extends ICommandHandler> {
 
-    public enum commandResult {
+    public enum CommandResult {
         success,
         failure,
     }
 
-    commandResult execute(U commandHandler);
+    CommandResult execute(U commandHandler);
 
     String getErrorCode();
 }
