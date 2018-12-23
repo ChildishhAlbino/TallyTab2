@@ -6,7 +6,12 @@
 package com.albinodevelopment.View.Function;
 
 import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.Model.Components.FunctionTab;
+import com.albinodevelopment.Model.Components.MenuItem;
+import com.albinodevelopment.Model.Components.TabItemContainer;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
+import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
+import com.albinodevelopment.View.Architecture.View;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -26,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class FunctionTemplateController extends ContentViewComponent<Function> implements Initializable {
 
     @FXML
-    private VBox drinksVbox;
+    private VBox itemsVbox;
     @FXML
     private Label title;
     @FXML
@@ -63,14 +68,27 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
     }
 
     @Override
-    public Parent generate(Function content) { 
+    public Parent generate(Function content) {
         setContent(content);
         title.setText(content.getTitle());
         currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
         limit.setText(String.valueOf(content.getTab().getLimit()));
         percentage.setText(String.valueOf(content.getTab().getPercent()));
         progressBar.setProgress(content.getTab().getPercent());
+        
+        generateMenuGUI(content.getTab());
+        
         return getFromTemplate();
     }
-    
+
+    private void generateMenuGUI(FunctionTab tab) {
+        for (MenuItem item : tab.getMenu().getItemsArray()) {
+            TabItemContainer tabItemContainer
+                    = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
+            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/MenuItemTemplateFXML.fxml", MenuItemTemplateController.class);
+            View.linkChildAndParent(this, cvc);
+            itemsVbox.getChildren().add(cvc.generate(tabItemContainer));
+        }
+    }
+
 }

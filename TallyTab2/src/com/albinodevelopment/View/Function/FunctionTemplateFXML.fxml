@@ -19,7 +19,7 @@
             <children>
                 <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1920.0">
                     <content>
-                        <VBox fx:id="drinksVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1078.0" prefWidth="1272.0" spacing="15.0">
+                        <VBox fx:id="itemsVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1078.0" prefWidth="1272.0" spacing="15.0">
                             <padding>
                                 <Insets bottom="50.0" />
                             </padding>

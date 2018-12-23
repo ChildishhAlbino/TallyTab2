@@ -118,4 +118,8 @@ public class FunctionTab extends Content {
         return limit - currentBalance;
     }
 
+    public int getTally(String itemName) {
+        return tally.get(menu.getByName(itemName));
+    }
+
 }
