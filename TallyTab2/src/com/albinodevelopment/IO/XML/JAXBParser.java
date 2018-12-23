@@ -27,13 +27,13 @@ public class JAXBParser {
     
     public boolean write(String directory, XML_able toXML) throws JAXBException {
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.marshal(toXML, new File(directory + ".xml"));
+        marshaller.marshal(toXML, new File(directory));
         return true;
     }
 
     public <T> T read(Class<T> clazz, String directory) throws JAXBException{
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        T t = clazz.cast(unmarshaller.unmarshal(new File(directory + ".xml")));
+        T t = clazz.cast(unmarshaller.unmarshal(new File(directory)));
         return t;
     }
     

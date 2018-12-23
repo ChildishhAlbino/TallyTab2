@@ -32,7 +32,9 @@ public class Model implements ICommandHandler<ModelCommand> {
     public ICommand.commandResult handle(ModelCommand command) {
         ICommand.commandResult response = ICommand.commandResult.success;
         if (command.execute(this) == ICommand.commandResult.failure) {
-            ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
+            if (command.getErrorCode() != null) {
+                ConnorLogger.log(command.getClass().getSimpleName() + ": " + command.getErrorCode(), ConnorLogger.Priority.medium);
+            }
             response = ICommand.commandResult.failure;
         }
 
@@ -71,7 +73,7 @@ public class Model implements ICommandHandler<ModelCommand> {
     public Function getByName(String functionName) {
         Function f = null;
         for (Function function : functions) {
-            if (f.getTitle().equals(functionName)) {
+            if (function.getTitle().equals(functionName)) {
                 f = function;
                 break;
             }

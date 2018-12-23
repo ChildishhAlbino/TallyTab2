@@ -40,6 +40,7 @@ public class Menu extends Content {
     public Menu(String title) {
         this.title = title;
         this.items = new ArrayList<>();
+
     }
 
     public ArrayList<MenuItem> getItemsArray() {
@@ -77,6 +78,7 @@ public class Menu extends Content {
             items.add(item);
             response = true;
         }
+        Sort();
         return response;
     }
 
@@ -88,27 +90,23 @@ public class Menu extends Content {
         } else {
             ConnorLogger.log("Item:" + item.getName() + "wasn't in list.", ConnorLogger.Priority.medium);
         }
-
-        return response;
-    }
-
-    protected boolean changeMenuItemCount(int delta, String itemName) {
-        boolean response = false;
-        if (contains(itemName)) {
-            getByName(itemName).changeCount(delta);
-            response = true;
-        }
-
+        Sort();
         return response;
     }
 
     @Override
     public String toString() {
         String s = "\n" + title + ":";
-        for (MenuItem item : items){
+        for (MenuItem item : items) {
             s += "\n" + item.toString();
         }
         return s;
+    }
+
+    public void Sort() {
+        items.sort((MenuItem o1, MenuItem o2) -> {
+            return o1.getName().compareTo(o2.getName());
+        });
     }
 
 }

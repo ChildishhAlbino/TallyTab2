@@ -5,13 +5,14 @@
  */
 package com.albinodevelopment.View.Function;
 
-import com.albinodevelopment.Commands.ICommandHandler;
-import com.albinodevelopment.View.Architecture.Window;
+import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -22,7 +23,7 @@ import javafx.scene.layout.VBox;
  *
  * @author conno
  */
-public class FunctionTemplateController extends Window implements Initializable {
+public class FunctionTemplateController extends ContentViewComponent<Function> implements Initializable {
 
     @FXML
     private VBox drinksVbox;
@@ -59,6 +60,16 @@ public class FunctionTemplateController extends Window implements Initializable 
 
     @FXML
     private void editLimitButtonAction(ActionEvent event) {
+    }
+
+    @Override
+    public Parent generate(Function content) {
+        setContent(content);
+        title.setText(content.getTitle());
+        currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
+        limit.setText(String.valueOf(content.getTab().getLimit()));
+
+        return getFromTemplate();
     }
 
 }

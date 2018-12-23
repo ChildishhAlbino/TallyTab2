@@ -5,13 +5,12 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.IO.XML.JAXBParser;
-import com.albinodevelopment.Logging.ConnorLogger;
-import com.albinodevelopment.Model.Components.Function;
-import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,7 +55,19 @@ public class NewFunctionWindowController extends Window implements Initializable
 
     @FXML
     private void onSubmitButtonAction(ActionEvent event) {
-       
+        try {
+            String functionTitle = (functionNameTF.getText().equals("") ? null : functionNameTF.getText());
+            String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
+            
+            Menu menu = new Menu("Test");
+            menu.add(new MenuItem(50d, "Test item."));
+            
+            JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory() + "//TestMenu.xml" , menu);
+            handle(new ViewCommand.PassToControllerCommand(
+                    new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, FileIO.getMenuDirectory() + "//TestMenu.xml", this)));
+        } catch (JAXBException ex) {
+            Logger.getLogger(NewFunctionWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

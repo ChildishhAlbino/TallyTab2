@@ -5,13 +5,20 @@
  */
 package com.albinodevelopment.View.Home;
 
+import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.View.Architecture.ContentViewComponent;
+import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
+import com.albinodevelopment.View.Architecture.View;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.Architecture.Window;
+import com.albinodevelopment.View.Function.FunctionTemplateController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
 /**
@@ -55,6 +62,19 @@ public class MainWindow extends Window implements Initializable {
 
     @FXML
     private void handlePreferencesButton(ActionEvent event) {
+    }
+
+    public void newTab(Function function) {
+        Tab tab = new Tab(function.getTitle());
+        ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/FunctionTemplateFXML.fxml", FunctionTemplateController.class);
+        View.linkChildAndParent(this, cvc);
+        ConnorLogger.log(getChildren().toString(), ConnorLogger.Priority.medium);
+        tab.setContent(cvc.generate(function));
+        tabPane.getTabs().add(tab);
+        tabPane.getSelectionModel().select(tab);
+        tab.setOnCloseRequest((event) -> {
+            remove(cvc);
+        });
     }
 
 }

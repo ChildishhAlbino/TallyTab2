@@ -43,4 +43,10 @@ public abstract class Window extends OutputViewComponent implements IWindow {
         stage.requestFocus();
     }
 
+    @Override
+    public void close() {
+        stage.close();
+        getParent().remove(this);
+    }
+
 }

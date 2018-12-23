@@ -9,7 +9,9 @@ import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
+import com.albinodevelopment.View.Home.MainWindow;
 import java.util.Collection;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -70,7 +72,9 @@ public class View extends ViewComponentParent implements IView {
     public ICommand.commandResult handle(ViewCommand command) {
         ICommand.commandResult response = ICommand.commandResult.success;
         if (command.execute(this) == ICommand.commandResult.failure) {
-            ConnorLogger.log(command.getErrorCode(), ConnorLogger.Priority.medium);
+            if (command.getErrorCode() != null) {
+                ConnorLogger.log(command.getClass().getSimpleName() + ": " + command.getErrorCode(), ConnorLogger.Priority.medium);
+            }
             response = ICommand.commandResult.failure;
         }
 
@@ -80,6 +84,10 @@ public class View extends ViewComponentParent implements IView {
     public void setCommandHandler(ICommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
-
+    
+    public void GenerateFunctionGUI(Function function){
+        Collection<MainWindow> col = getChildren(MainWindow.class);
+        col.iterator().next().newTab(function);
+    }
 
 }

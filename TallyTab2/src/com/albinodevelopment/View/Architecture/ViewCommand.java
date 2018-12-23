@@ -7,6 +7,9 @@ package com.albinodevelopment.View.Architecture;
 
 import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.View.Function.NewFunctionWindowController;
+import java.util.Collection;
 
 /**
  *
@@ -35,6 +38,25 @@ public abstract class ViewCommand extends Command<View> {
         @Override
         public commandResult execute(View commandHandler) {
             commandHandler.openNewFunctionWindow();
+            return commandResult.success;
+        }
+
+    }
+
+    public static class GenerateFunctionGUICommand extends ViewCommand {
+
+        private final Function function;
+
+        public GenerateFunctionGUICommand(Function function) {
+            this.function = function;
+        }
+
+        @Override
+        public commandResult execute(View commandHandler) {
+            Collection<Window> col = commandHandler.getChildren(NewFunctionWindowController.class);
+            col.iterator().next().close();
+            commandHandler.GenerateFunctionGUI(function);
+            
             return commandResult.success;
         }
 

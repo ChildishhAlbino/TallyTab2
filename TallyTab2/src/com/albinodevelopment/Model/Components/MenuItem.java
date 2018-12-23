@@ -30,12 +30,6 @@ public class MenuItem extends Content {
     private Double price;
     private String name;
 
-    private int count = 0;
-
-    public int getCount() {
-        return count;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -43,16 +37,10 @@ public class MenuItem extends Content {
     public String getName() {
         return name;
     }
-    
 
     public MenuItem(Double price, String name) {
         this.price = price;
         this.name = name;
-    }
-
-    protected boolean changeCount(int delta) {
-        count += delta;
-        return true;
     }
 
     public void setState(ItemState state) {
