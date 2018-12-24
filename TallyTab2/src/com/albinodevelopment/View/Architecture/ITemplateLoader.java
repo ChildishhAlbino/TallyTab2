@@ -5,7 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
-import javafx.scene.Parent;
+import java.net.URL;
 
 /**
  *
@@ -17,5 +17,5 @@ public interface ITemplateLoader {
 
     ViewComponent getViewComponent(String fmxl);
 
-    <T extends ViewComponent> T getClassFromTemplate(String fxml, Class<T> clazz);
+    <T extends ViewComponent> T getClassFromTemplate(URL fxml, Class<T> clazz);
 }

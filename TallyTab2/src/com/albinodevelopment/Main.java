@@ -9,7 +9,7 @@ import com.albinodevelopment.Controller.Controller;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Model;
-import com.albinodevelopment.View.Architecture.View;
+import com.albinodevelopment.View.View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -32,6 +32,7 @@ public class Main extends Application {
         if (!FileIO.fileStructureExists()) {
             ConnorLogger.log("Program file structure didn't exist. Attempting to create new structure.", ConnorLogger.Priority.extreme);
             if (FileIO.createFileStructure() == false) {
+                FileIO.createErrorFile("File structure could not be created.");
                 System.exit(0);
             } else {
                 ConnorLogger.log("Program file structure created successfully!", ConnorLogger.Priority.extreme);

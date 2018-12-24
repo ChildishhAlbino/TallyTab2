@@ -11,7 +11,7 @@ import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
 import com.albinodevelopment.View.Home.MainWindow;
-import com.albinodevelopment.View.MenuBuilder.MenuBuilderTemplateController;
+import com.albinodevelopment.View.View;
 import java.util.Collection;
 
 /**

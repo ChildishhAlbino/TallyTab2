@@ -42,7 +42,7 @@
                     <content>
                         <VBox alignment="CENTER" spacing="50.0">
                             <children>
-                                <Label text="TALLYTAB">
+                                <Label text="TALLYTAB2">
                                     <font>
                                         <Font name="System Bold Italic" size="96.0" />
                                     </font>

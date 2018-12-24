@@ -11,7 +11,7 @@ import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.Model.Components.TabItemContainer;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
-import com.albinodevelopment.View.Architecture.View;
+import com.albinodevelopment.View.View;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -75,9 +75,9 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         limit.setText(String.valueOf(content.getTab().getLimit()));
         percentage.setText(String.valueOf(content.getTab().getPercent()));
         progressBar.setProgress(content.getTab().getPercent());
-        
+
         generateMenuGUI(content.getTab());
-        
+
         return getFromTemplate();
     }
 
@@ -85,7 +85,8 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
                     = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
-            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/MenuItemTemplate.fxml", MenuItemTemplateController.class);
+            URL url = MenuItemTemplateController.class.getResource("MenuItemTemplate.fxml");
+            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, MenuItemTemplateController.class);
             View.linkParentAndChild(this, cvc);
             itemsVbox.getChildren().add(cvc.generate(tabItemContainer));
         }

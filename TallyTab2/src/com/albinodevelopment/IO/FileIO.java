@@ -7,6 +7,10 @@ package com.albinodevelopment.IO;
 
 import com.albinodevelopment.Logging.ConnorLogger;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -108,6 +112,19 @@ public class FileIO {
             ConnorLogger.log("ERROR: Directory selected was cancelled.", ConnorLogger.Priority.medium);
         }
         return s;
+    }
+
+    public static void createErrorFile(String errorCode) {
+        PrintWriter printWriter = null;
+        try {
+            File file = new File("error.txt");
+            printWriter = new PrintWriter(file);
+            printWriter.println(errorCode);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            printWriter.close();
+        }
     }
 
 }

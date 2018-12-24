@@ -5,6 +5,8 @@
  */
 package com.albinodevelopment.View.MenuBuilder;
 
+import com.albinodevelopment.IO.FileIO;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
@@ -67,6 +69,8 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
 
     @FXML
     private void openButtonAction(ActionEvent event) {
+        String filePath = FileIO.openFileExplorer(FileIO.getMenuDirectory());
+        ConnorLogger.log(filePath, ConnorLogger.Priority.medium);
     }
 
     @Override

@@ -13,7 +13,6 @@ import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.Architecture.Window;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,23 +50,21 @@ public class NewFunctionWindowController extends Window implements Initializable
 
     @FXML
     private void onSelectMenuButtonAction(ActionEvent event) {
+        String filePath = FileIO.openFileExplorer(FileIO.getMenuDirectory());
+        if (filePath != null) {
+            selectedMenuLabel.setText(filePath);
+        }
     }
 
     @FXML
     private void onSubmitButtonAction(ActionEvent event) {
-        try {
-            String functionTitle = (functionNameTF.getText().equals("") ? null : functionNameTF.getText());
-            String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
 
-            Menu menu = new Menu("Test");
-            menu.add(new MenuItem(50d, "Test Item."));
-            menu.add(new MenuItem(55d, "Test Items."));
-            JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory() + "//TestMenu.xml", menu);
-            handle(new ViewCommand.PassToControllerCommand(
-                    new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, FileIO.getMenuDirectory() + "//TestMenu.xml", this)));
-        } catch (JAXBException ex) {
-            Logger.getLogger(NewFunctionWindowController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String functionTitle = (functionNameTF.getText().equals("") ? null : functionNameTF.getText());
+        String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
+
+        handle(new ViewCommand.PassToControllerCommand(
+                new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, FileIO.getMenuDirectory() + "//TestMenu.xml", this)));
+
     }
 
     @Override

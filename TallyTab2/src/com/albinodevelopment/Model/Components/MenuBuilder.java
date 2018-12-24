@@ -26,7 +26,7 @@ public class MenuBuilder {
 
     public boolean save() {
         boolean response = false;
-
+        
         return response;
     }
 
@@ -44,5 +44,9 @@ public class MenuBuilder {
             }
         }
         return response;
+    }
+    
+    public void reset(){
+        menu = null;
     }
 }

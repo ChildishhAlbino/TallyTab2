@@ -3,15 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.albinodevelopment.View.Architecture;
+package com.albinodevelopment.View;
 
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.View.Architecture.IView;
+import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
+import com.albinodevelopment.View.Architecture.ViewCommand;
+import com.albinodevelopment.View.Architecture.ViewComponent;
+import com.albinodevelopment.View.Architecture.ViewComponentParent;
+import com.albinodevelopment.View.Architecture.Window;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
 import com.albinodevelopment.View.Home.MainWindow;
+import java.net.URL;
 import java.util.Collection;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -31,7 +38,8 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public void start(Stage stage) {
-        Window window = newWindow("../Home/MainWindowTemplate.fxml", Window.class, stage);
+        URL url = MainWindow.class.getResource("MainWindowTemplate.fxml");
+        Window window = newWindow(url, Window.class, stage);
         window.getStage().setOnCloseRequest((event) -> {
             Platform.runLater(() -> {
                 System.exit(0);
@@ -41,7 +49,7 @@ public class View extends ViewComponentParent implements IView {
         linkParentAndChild(this, window);
     }
 
-    public static <T extends Window> T newWindow(String fxml, Class<T> clazz, Stage stage) {
+    public static <T extends Window> T newWindow(URL fxml, Class<T> clazz, Stage stage) {
         T window = TemplateLoaderFactory.getLoader().getClassFromTemplate(fxml, clazz);
         Scene scene = new Scene(window.getFromTemplate());
         stage.setScene(scene);
@@ -52,7 +60,7 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public static void linkParentAndChild(ViewComponentParent parent, ViewComponent child) {
-        parent.children.add(child);
+        parent.getChildren().add(child);
         child.setParent(parent);
     }
 
@@ -60,7 +68,8 @@ public class View extends ViewComponentParent implements IView {
         Collection<NewFunctionWindowController> newFunctionWindows = getChildren(NewFunctionWindowController.class);
         if (newFunctionWindows.isEmpty()) {
             Stage stage = new Stage();
-            Window window = newWindow("../Function/NewFunctionWindowTemplate.fxml", NewFunctionWindowController.class, stage);
+            URL url = NewFunctionWindowController.class.getResource("NewFunctionWindowTemplate.fxml");
+            Window window = newWindow(url, NewFunctionWindowController.class, stage);
             linkParentAndChild(this, window);
         } else {
             Window window = newFunctionWindows.stream().findFirst().get();
