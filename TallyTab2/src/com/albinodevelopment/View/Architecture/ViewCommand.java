@@ -8,7 +8,10 @@ package com.albinodevelopment.View.Architecture;
 import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Components.Function;
+import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
+import com.albinodevelopment.View.Home.MainWindow;
+import com.albinodevelopment.View.MenuBuilder.MenuBuilderTemplateController;
 import java.util.Collection;
 
 /**
@@ -53,10 +56,28 @@ public abstract class ViewCommand extends Command<View> {
 
         @Override
         public CommandResult execute(View commandHandler) {
-            Collection<Window> col = commandHandler.getChildren(NewFunctionWindowController.class);
+            Collection<NewFunctionWindowController> col = commandHandler.getChildren(NewFunctionWindowController.class);
             col.iterator().next().close();
             commandHandler.GenerateFunctionGUI(function);
 
+            return CommandResult.success;
+        }
+
+    }
+
+    public static class UpdateMenuBuilderWindowCommand extends ViewCommand {
+
+        private final Menu menu;
+
+        public UpdateMenuBuilderWindowCommand(Menu menu) {
+            this.menu = menu;
+        }
+
+        @Override
+        public CommandResult execute(View commandHandler) {
+            Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
+            MainWindow mainwindow = col.iterator().next();
+            mainwindow.openMenuBuilderTab(menu);
             return CommandResult.success;
         }
 

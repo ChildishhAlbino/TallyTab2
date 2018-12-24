@@ -11,6 +11,8 @@ import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
+import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.Model.Components.MenuBuilder;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 import java.util.ArrayList;
 
@@ -22,6 +24,8 @@ public class Model implements ICommandHandler<ModelCommand> {
 
     private ICommandHandler<ViewCommand> commandHandler;
     private ArrayList<Function> functions = new ArrayList<>();
+
+    private MenuBuilder menuBuilder;
 
     @Override
     public ICommandHandler<ViewCommand> getCommandHandler() {
@@ -80,6 +84,13 @@ public class Model implements ICommandHandler<ModelCommand> {
         }
 
         return f;
+    }
+
+    public MenuBuilder getMenuBuilder() {
+        if (menuBuilder == null) {
+            menuBuilder = new MenuBuilder();
+        }
+        return menuBuilder;
     }
 
 }

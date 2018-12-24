@@ -85,8 +85,8 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
                     = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
-            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/MenuItemTemplateFXML.fxml", MenuItemTemplateController.class);
-            View.linkChildAndParent(this, cvc);
+            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate("../Function/MenuItemTemplate.fxml", MenuItemTemplateController.class);
+            View.linkParentAndChild(this, cvc);
             itemsVbox.getChildren().add(cvc.generate(tabItemContainer));
         }
     }

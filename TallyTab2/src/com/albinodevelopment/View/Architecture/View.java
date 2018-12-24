@@ -31,14 +31,14 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public void start(Stage stage) {
-        Window window = newWindow("../Home/MainWindowFXML.fxml", Window.class, stage);
+        Window window = newWindow("../Home/MainWindowTemplate.fxml", Window.class, stage);
         window.getStage().setOnCloseRequest((event) -> {
             Platform.runLater(() -> {
                 System.exit(0);
             });
         });
 
-        linkChildAndParent(this, window);
+        linkParentAndChild(this, window);
     }
 
     public static <T extends Window> T newWindow(String fxml, Class<T> clazz, Stage stage) {
@@ -51,17 +51,17 @@ public class View extends ViewComponentParent implements IView {
         return window;
     }
 
-    public static void linkChildAndParent(ViewComponentParent parent, ViewComponent child) {
+    public static void linkParentAndChild(ViewComponentParent parent, ViewComponent child) {
         parent.children.add(child);
         child.setParent(parent);
     }
 
     public void openNewFunctionWindow() {
-        Collection<Window> newFunctionWindows = getChildren(NewFunctionWindowController.class);
+        Collection<NewFunctionWindowController> newFunctionWindows = getChildren(NewFunctionWindowController.class);
         if (newFunctionWindows.isEmpty()) {
             Stage stage = new Stage();
-            Window window = newWindow("../Function/NewFunctionWindowFXML.fxml", NewFunctionWindowController.class, stage);
-            linkChildAndParent(this, window);
+            Window window = newWindow("../Function/NewFunctionWindowTemplate.fxml", NewFunctionWindowController.class, stage);
+            linkParentAndChild(this, window);
         } else {
             Window window = newFunctionWindows.stream().findFirst().get();
             window.show();

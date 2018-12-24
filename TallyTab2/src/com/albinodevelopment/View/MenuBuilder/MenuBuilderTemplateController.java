@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
  * @author conno
  */
 public class MenuBuilderTemplateController extends ContentViewComponent<Menu> implements Initializable {
-    
+
     @FXML
     private Label menuTitle;
     @FXML
@@ -52,34 +52,33 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     private void changeDrinksListNameButtonAction(ActionEvent event) {
     }
-    
+
     @FXML
     private void addItemButtonAction(ActionEvent event) {
     }
-    
+
     @FXML
     private void saveButtonAction(ActionEvent event) {
     }
-    
+
     @FXML
     private void openButtonAction(ActionEvent event) {
     }
-    
+
     @Override
     public Parent generate(Menu content) {
         setContent(content);
         menuTitle.setText(content.getTitle());
-        
-        
+
         return getFromTemplate();
     }
-    
+
     private void generateItemGUI(MenuItem item) {
-        
+
     }
-    
+
 }

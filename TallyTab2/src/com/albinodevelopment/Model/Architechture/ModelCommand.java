@@ -8,6 +8,7 @@ package com.albinodevelopment.Model.Architechture;
 import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
+import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Model;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 
@@ -67,6 +68,21 @@ public abstract class ModelCommand extends Command<Model> {
         @Override
         public CommandResult execute(Model commandHandler) {
             commandHandler.remove(title);
+            return CommandResult.success;
+        }
+
+    }
+
+    public static class GetMenuInConstructionCommand extends ModelCommand {
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            Menu menu = commandHandler.getMenuBuilder().get();
+            if (menu == null) {
+                errorCode = "Menu was null.";
+                return CommandResult.failure;
+            }
+            commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(menu)));
             return CommandResult.success;
         }
 
