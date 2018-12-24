@@ -5,7 +5,11 @@
  */
 package com.albinodevelopment.IO;
 
+import com.albinodevelopment.Logging.ConnorLogger;
 import java.io.File;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -72,6 +76,38 @@ public class FileIO {
         new File(getMenuDirectory()).mkdir();
 
         return fileStructureExists();
+    }
+
+    public static String openFileExplorer(String directory) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a File");
+        fileChooser.setInitialDirectory(new File(directory));
+        File selected = fileChooser.showOpenDialog(new Stage());
+        String s = null;
+        if (selected != null) {
+            s = selected.getAbsolutePath();
+        } else {
+            ConnorLogger.log("ERROR: File selector was cancelled.", ConnorLogger.Priority.medium);
+        }
+        return s;
+    }
+
+    public static String openDirectoryWindow() {
+        return openDirectoryWindow(getApplicationDirectory());
+    }
+
+    public static String openDirectoryWindow(String directory) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select a Directory");
+        directoryChooser.setInitialDirectory(new File(directory));
+        File selected = directoryChooser.showDialog(new Stage());
+        String s = null;
+        if (selected != null) {
+            s = selected.getAbsolutePath();
+        } else {
+            ConnorLogger.log("ERROR: Directory selected was cancelled.", ConnorLogger.Priority.medium);
+        }
+        return s;
     }
 
 }
