@@ -8,6 +8,8 @@ package com.albinodevelopment.Model.Components;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.Content;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -104,9 +106,10 @@ public class Menu extends Content {
     }
 
     public void Sort() {
-        items.sort((MenuItem o1, MenuItem o2) -> {
-            return o1.getName().compareTo(o2.getName());
-        });
+//        items.sort((MenuItem o1, MenuItem o2) -> {
+//            return o1.getName().compareTo(o2.getName());
+//        });
+        Collections.sort(items);
     }
 
 }

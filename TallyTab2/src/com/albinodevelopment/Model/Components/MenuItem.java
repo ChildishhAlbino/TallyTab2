@@ -16,7 +16,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Item")
-public class MenuItem extends Content {
+public class MenuItem extends Content implements Comparable<MenuItem>{
+
+    @Override
+    public int compareTo(MenuItem o) {
+        return this.name.compareToIgnoreCase(o.name);
+    }
 
     public enum ItemState {
         open,

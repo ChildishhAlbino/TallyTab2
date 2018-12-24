@@ -60,8 +60,8 @@ public class NewFunctionWindowController extends Window implements Initializable
             String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
 
             Menu menu = new Menu("Test");
-            menu.add(new MenuItem(50d, "Test item."));
-
+            menu.add(new MenuItem(50d, "Test Item."));
+            menu.add(new MenuItem(55d, "Test Items."));
             JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory() + "//TestMenu.xml", menu);
             handle(new ViewCommand.PassToControllerCommand(
                     new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, FileIO.getMenuDirectory() + "//TestMenu.xml", this)));
