@@ -100,17 +100,21 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
     public void update(Menu content) {
         menuTitle.setText(content.getTitle());
         setContent(content);
-        ArrayList<MenuBuilderItemTemplateController> cvcs = getChildren(MenuBuilderItemTemplateController.class);
-        for (ContentViewComponent cvc : cvcs) {
-            scrollVboxLive.getChildren().remove(cvc.getFromTemplate());
-            remove(cvc);
-        }
+        clearVBox();
         generateMenuGUI(content);
     }
 
     private void generateMenuGUI(Menu menu) {
         for (MenuItem item : menu.getItemsArray()) {
             generateItemGUI(item);
+        }
+    }
+
+    private void clearVBox() {
+        ArrayList<MenuBuilderItemTemplateController> cvcs = getChildren(MenuBuilderItemTemplateController.class);
+        for (ContentViewComponent cvc : cvcs) {
+            scrollVboxLive.getChildren().remove(cvc.getFromTemplate());
+            remove(cvc);
         }
     }
 
