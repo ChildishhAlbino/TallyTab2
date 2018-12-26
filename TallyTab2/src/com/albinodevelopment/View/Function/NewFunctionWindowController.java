@@ -39,9 +39,9 @@ public class NewFunctionWindowController extends Window implements Initializable
     private TextField functionLimitTF;
     @FXML
     private Label selectedMenuLabel;
-    
+
     private String menuDirectory = "";
-    
+
     /**
      * Initializes the controller class.
      */
@@ -64,7 +64,7 @@ public class NewFunctionWindowController extends Window implements Initializable
 
         String functionTitle = (functionNameTF.getText().equals("") ? null : functionNameTF.getText());
         String functionLimit = (functionLimitTF.getText().equals("") ? "" : functionLimitTF.getText());
-        
+
         handle(new ViewCommand.PassToControllerCommand(
                 new ControllerCommand.ValidateNewFunctionCommand(functionTitle, functionLimit, menuDirectory, this)));
 

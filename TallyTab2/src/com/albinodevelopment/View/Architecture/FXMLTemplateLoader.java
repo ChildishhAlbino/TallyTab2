@@ -49,16 +49,19 @@ public class FXMLTemplateLoader implements ITemplateLoader {
 
         return null;
     }
+
     /**
      * Generates a ViewComponent of type T from an FXML template.
-     * @param <T> The specific class you want the FXML controller to be returned as.
-     * @param fxml The URL of the template. Done as URL rather than a relative String
-     * as Java runtime does not like relative file paths. Pass a URL from the 
-     * Controller class as long as they are in the same package.
+     *
+     * @param <T> The specific class you want the FXML controller to be returned
+     * as.
+     * @param fxml The URL of the template. Done as URL rather than a relative
+     * String as Java runtime does not like relative file paths. Pass a URL from
+     * the Controller class as long as they are in the same package.
      * @param clazz Class object of type T. Refer to T.
-     * @return ViewComponent of type T that is the controller of the FXML template.
+     * @return ViewComponent of type T that is the controller of the FXML
+     * template.
      */
-    
     @Override
     public <T extends ViewComponent> T getClassFromTemplate(URL fxml, Class<T> clazz) {
         fxmlLoader.setLocation(fxml);

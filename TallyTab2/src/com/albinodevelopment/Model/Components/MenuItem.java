@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Item")
-public class MenuItem extends Content implements Comparable<MenuItem>{
+public class MenuItem extends Content implements Comparable<MenuItem> {
 
     @Override
     public int compareTo(MenuItem o) {

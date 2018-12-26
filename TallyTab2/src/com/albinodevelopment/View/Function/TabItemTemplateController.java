@@ -23,7 +23,7 @@ import javafx.scene.control.Label;
  * @author conno
  */
 public class TabItemTemplateController extends ContentViewComponent<TabItemContainer> implements Initializable {
-    
+
     @FXML
     private Label itemName;
     @FXML
@@ -34,7 +34,7 @@ public class TabItemTemplateController extends ContentViewComponent<TabItemConta
     private Button plusButton;
     @FXML
     private Label subtotal;
-    
+
     @FXML
     private Button minusButton;
 
@@ -45,19 +45,19 @@ public class TabItemTemplateController extends ContentViewComponent<TabItemConta
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     private void handlePlusButton(ActionEvent event) {
     }
-    
+
     @FXML
     private void handleMinusButton(ActionEvent event) {
     }
-    
+
     @Override
     public Parent generate(TabItemContainer content) {
         setContent(content);
-        
+
         itemName.setText(content.getItem().getName());
         itemPrice.setText(String.valueOf(content.getItem().getPrice()));
         currentAmt.setText(String.valueOf(content.getTally()));
@@ -69,5 +69,5 @@ public class TabItemTemplateController extends ContentViewComponent<TabItemConta
     public void update(TabItemContainer content) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

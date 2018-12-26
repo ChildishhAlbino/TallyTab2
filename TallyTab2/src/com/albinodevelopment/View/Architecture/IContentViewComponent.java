@@ -15,5 +15,6 @@ import javafx.scene.Parent;
 public interface IContentViewComponent<U extends IContent> {
 
     Parent generate(U content);
+
     void update(U content);
 }
