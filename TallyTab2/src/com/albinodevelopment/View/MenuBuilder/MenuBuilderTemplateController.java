@@ -76,8 +76,9 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
     @FXML
     private void openButtonAction(ActionEvent event) {
         String filePath = FileIO.openFileExplorer(FileIO.getMenuDirectory());
-        ConnorLogger.log(filePath, ConnorLogger.Priority.medium);
-        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateLoadedMenuForBuilderCommand(filePath)));
+        if (filePath != null) {
+            handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateLoadedMenuForBuilderCommand(filePath)));
+        }
     }
 
     @Override
