@@ -9,6 +9,7 @@ import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
 import com.albinodevelopment.View.Architecture.ViewCommand;
@@ -34,10 +35,10 @@ import javafx.scene.control.TabPane;
  * @author conno
  */
 public class MainWindow extends Window implements Initializable {
-    
+
     @FXML
     private TabPane tabPane;
-    
+
     private Tab menuBuilderTab;
 
     /**
@@ -47,25 +48,25 @@ public class MainWindow extends Window implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     private void handleNewButton(ActionEvent event) {
         handle(new ViewCommand.OpenNewFunctionWindowCommand());
     }
-    
+
     @FXML
     private void handleOpenButton(ActionEvent event) {
     }
-    
+
     @FXML
     private void handleSaveButton(ActionEvent event) {
     }
-    
+
     @FXML
     private void handleCloseButton(ActionEvent event) {
-        
+
     }
-    
+
     @FXML
     private void handleMenuBuilderButton(ActionEvent event) {
         Collection col = getChildren(MenuBuilderTemplateController.class);
@@ -75,34 +76,46 @@ public class MainWindow extends Window implements Initializable {
             tabPane.getSelectionModel().select(menuBuilderTab);
         }
     }
-    
+
     @FXML
     private void handlePreferencesButton(ActionEvent event) {
     }
-    
-    public void openMenuBuilderTab(Menu menu) {
+
+    public void updateMenuBuilderComponent(Menu menu) {
+        Collection<MenuBuilderTemplateController> col = getChildren(MenuBuilderTemplateController.class);
+        if (col.isEmpty()) {
+            openNewMenuBuilderTab(menu);
+        } else {
+            ContentViewComponent cvc = col.iterator().next();
+            if (cvc != null) {
+                cvc.update(menu);
+            }
+        }
+    }
+
+    private void openNewMenuBuilderTab(Menu menu) {
         URL url = MenuBuilderTemplateController.class.getResource("MenuBuilderTemplate.fxml");
         ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, MenuBuilderTemplateController.class);
         View.linkParentAndChild(this, cvc);
-        
+
         Tab tab = generateMenuBuilderTab(cvc);
         tab.setContent(cvc.generate(menu));
         tabPane.getTabs().add(tab);
         tabPane.getSelectionModel().select(tab);
         menuBuilderTab = tab;
     }
-    
+
     public void newTab(Function function) {
         URL url = FunctionTemplateController.class.getResource("FunctionTemplate.fxml");
         ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, FunctionTemplateController.class);
         View.linkParentAndChild(this, cvc);
-        
+
         Tab tab = generateTab(function.getTitle(), cvc);
         tab.setContent(cvc.generate(function));
         tabPane.getTabs().add(tab);
         tabPane.getSelectionModel().select(tab);
     }
-    
+
     private Tab generateTab(String title, ContentViewComponent cvc) {
         Tab tab = new Tab(title);
         tab.setOnCloseRequest((event) -> {
@@ -113,10 +126,10 @@ public class MainWindow extends Window implements Initializable {
                 event.consume();
             }
         });
-        
+
         return tab;
     }
-    
+
     private Tab generateMenuBuilderTab(ContentViewComponent cvc) {
         Tab tab = new Tab("Menu Builder");
         tab.setOnCloseRequest((event) -> {
@@ -129,13 +142,13 @@ public class MainWindow extends Window implements Initializable {
         });
         return tab;
     }
-    
+
     public boolean confirmClose() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("You are closing a tab.");
         alert.setContentText("You could lose important data. Please make sure you've saved everything you don't want to lose before closing.");
-        
+
         Optional<ButtonType> result = alert.showAndWait();
         return result.get().equals(ButtonType.OK);
     }

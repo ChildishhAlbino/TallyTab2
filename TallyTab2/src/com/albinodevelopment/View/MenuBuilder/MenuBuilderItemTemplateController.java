@@ -5,11 +5,14 @@
  */
 package com.albinodevelopment.View.MenuBuilder;
 
+import com.albinodevelopment.Model.Components.MenuItem;
+import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
 /**
@@ -17,7 +20,7 @@ import javafx.scene.control.Label;
  *
  * @author conno
  */
-public class MenuBuilderItemTemplateController implements Initializable {
+public class MenuBuilderItemTemplateController extends ContentViewComponent<MenuItem> implements Initializable {
 
     @FXML
     private Label itemNameLabel;
@@ -30,10 +33,24 @@ public class MenuBuilderItemTemplateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void removeButtonAction(ActionEvent event) {
     }
-    
+
+    @Override
+    public Parent generate(MenuItem content) {
+        update(content);
+
+        return getFromTemplate();
+    }
+
+    @Override
+    public void update(MenuItem content) {
+        setContent(content);
+        itemNameLabel.setText(content.getName());
+        itemPriceLabel.setText(String.valueOf(content.getPrice()));
+    }
+
 }

@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
  *
  * @author conno
  */
-public class MenuItemTemplateController extends ContentViewComponent<TabItemContainer> implements Initializable {
+public class TabItemTemplateController extends ContentViewComponent<TabItemContainer> implements Initializable {
     
     @FXML
     private Label itemName;
@@ -63,6 +63,11 @@ public class MenuItemTemplateController extends ContentViewComponent<TabItemCont
         currentAmt.setText(String.valueOf(content.getTally()));
         subtotal.setText(String.valueOf(content.getSubtotal()));
         return getFromTemplate();
+    }
+
+    @Override
+    public void update(TabItemContainer content) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

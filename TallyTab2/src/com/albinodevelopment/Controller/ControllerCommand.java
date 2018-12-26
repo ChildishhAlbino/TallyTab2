@@ -16,38 +16,38 @@ import com.albinodevelopment.View.Architecture.OutputViewComponent;
  * @author conno
  */
 public abstract class ControllerCommand extends Command<Controller> {
-
+    
     public static class PassToModelCommand extends ControllerCommand {
-
+        
         private final ModelCommand command;
-
+        
         public PassToModelCommand(ModelCommand command) {
             this.command = command;
         }
-
+        
         @Override
         public CommandResult execute(Controller commandHandler) {
             return commandHandler.getCommandHandler().handle(command);
         }
-
+        
     }
-
+    
     public static class ValidateNewFunctionCommand extends ControllerCommand {
-
+        
         private final String title;
         private final String limit;
         private final String filePath;
         private final OutputViewComponent source;
-
+        
         public ValidateNewFunctionCommand(String title, String limit, String filePath, OutputViewComponent source) {
             this.title = title;
             this.limit = limit;
             this.filePath = filePath;
             this.source = source;
         }
-
+        
         @Override
-
+        
         public CommandResult execute(Controller commandHandler) {
             if (commandHandler.validateNewFunction(source, title, limit, filePath)) {
                 FunctionTab functionTab = new FunctionTab(commandHandler.validateLimit(limit), commandHandler.validateMenu(filePath));
@@ -61,19 +61,17 @@ public abstract class ControllerCommand extends Command<Controller> {
             }
             return CommandResult.success;
         }
-
+        
     }
-
+    
     public static class ValidateLoadedMenuForBuilderCommand extends ControllerCommand {
-
+        
         private final String filePath;
-
+        
         public ValidateLoadedMenuForBuilderCommand(String filePath) {
             this.filePath = filePath;
         }
         
-        
-
         @Override
         public CommandResult execute(Controller commandHandler) {
             Menu menu = commandHandler.validateMenu(filePath);
@@ -82,7 +80,7 @@ public abstract class ControllerCommand extends Command<Controller> {
             }
             return CommandResult.success;
         }
-
+        
     }
-
+    
 }

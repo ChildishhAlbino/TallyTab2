@@ -24,4 +24,6 @@ public abstract class ContentViewComponent<U extends IContent> extends ViewCompo
     public void setContent(U content) {
         this.content = content;
     }
+    
+    
 }

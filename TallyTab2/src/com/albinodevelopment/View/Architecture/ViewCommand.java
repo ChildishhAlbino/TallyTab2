@@ -77,7 +77,7 @@ public abstract class ViewCommand extends Command<View> {
         public CommandResult execute(View commandHandler) {
             Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
             MainWindow mainwindow = col.iterator().next();
-            mainwindow.openMenuBuilderTab(menu);
+            mainwindow.updateMenuBuilderComponent(menu);
             return CommandResult.success;
         }
 

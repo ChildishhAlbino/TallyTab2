@@ -24,7 +24,7 @@ public abstract class ViewComponentParent implements IViewComponentParent, IComm
     }
 
     @Override
-    public <T> Collection getChildren(Class<T> classFilter) {
+    public <T> ArrayList<T> getChildren(Class<T> classFilter) {
         ArrayList<T> childrenOfType = new ArrayList<>();
 
         for (ViewComponent child : children) {

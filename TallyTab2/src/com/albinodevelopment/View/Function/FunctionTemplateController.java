@@ -85,11 +85,16 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
                     = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
-            URL url = MenuItemTemplateController.class.getResource("MenuItemTemplate.fxml");
-            MenuItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, MenuItemTemplateController.class);
+            URL url = TabItemTemplateController.class.getResource("MenuItemTemplate.fxml");
+            TabItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, TabItemTemplateController.class);
             View.linkParentAndChild(this, cvc);
             itemsVbox.getChildren().add(cvc.generate(tabItemContainer));
         }
+    }
+
+    @Override
+    public void update(Function content) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
