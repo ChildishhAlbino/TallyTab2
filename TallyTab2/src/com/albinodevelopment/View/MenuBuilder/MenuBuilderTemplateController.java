@@ -114,14 +114,4 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
         }
     }
 
-    private void updateContentViewComponents(List<MenuItem> menuItems) {
-        ArrayList<MenuBuilderItemTemplateController> cvcs = getChildren(MenuBuilderItemTemplateController.class);
-        for (int i = 0; i < menuItems.size(); i++) {
-            cvcs.get(i).update(menuItems.get(i));
-        }
-    }
-
-    private void deleteExtraViewComponents(Menu menu) {
-
-    }
 }
