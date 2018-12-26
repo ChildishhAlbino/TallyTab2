@@ -8,6 +8,7 @@ package com.albinodevelopment.Controller;
 import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.FunctionTab;
+import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.View.Architecture.OutputViewComponent;
 
 /**
@@ -51,12 +52,33 @@ public abstract class ControllerCommand extends Command<Controller> {
             if (commandHandler.validateNewFunction(source, title, limit, filePath)) {
                 FunctionTab functionTab = new FunctionTab(commandHandler.validateLimit(limit), commandHandler.validateMenu(filePath));
                 CommandResult result = commandHandler.handle(new PassToModelCommand(new ModelCommand.NewFunctionCommand(title, functionTab)));
-                if(result == CommandResult.failure){
+                if (result == CommandResult.failure) {
                     source.output("Function already exists.");
                 }
             } else {
                 errorCode = "Function could not be validated.";
                 return CommandResult.failure;
+            }
+            return CommandResult.success;
+        }
+
+    }
+
+    public static class ValidateLoadedMenuForBuilderCommand extends ControllerCommand {
+
+        private final String filePath;
+
+        public ValidateLoadedMenuForBuilderCommand(String filePath) {
+            this.filePath = filePath;
+        }
+        
+        
+
+        @Override
+        public CommandResult execute(Controller commandHandler) {
+            Menu menu = commandHandler.validateMenu(filePath);
+            if (menu != null) {
+                commandHandler.handle(new PassToModelCommand(new ModelCommand.LoadMenuIntoBuilderCommand(menu)));
             }
             return CommandResult.success;
         }

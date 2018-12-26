@@ -88,4 +88,25 @@ public abstract class ModelCommand extends Command<Model> {
 
     }
 
+    public static class LoadMenuIntoBuilderCommand extends ModelCommand {
+
+        private final Menu menu;
+
+        public LoadMenuIntoBuilderCommand(Menu menu) {
+            this.menu = menu;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            CommandResult response = CommandResult.failure;
+            if (commandHandler.getMenuBuilder().load(menu)) {
+                response = CommandResult.success;
+                commandHandler.handle(new GetMenuInConstructionCommand());
+            }
+
+            return response;
+        }
+
+    }
+
 }
