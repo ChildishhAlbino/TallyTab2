@@ -26,7 +26,7 @@ public class FileIO {
     private static final String FUNCTION_SUBFOLDER = "/Functions";
     private static final String DEFAULT_DIRECTORY = getLocalAppFolder() + RELATIVE_FOLDER_PATH;
 
-    private static final String ILLEGAL_CHARACTERS = "[\\Q /\\?! \\E]";
+    private static final String ILLEGAL_CHARACTERS = "[\\Q/\\?!\\E]";
 
     public static String getIllegalCharacters() {
         return ILLEGAL_CHARACTERS;

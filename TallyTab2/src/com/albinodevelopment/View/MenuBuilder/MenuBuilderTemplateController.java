@@ -8,6 +8,7 @@ package com.albinodevelopment.View.MenuBuilder;
 import com.albinodevelopment.Commands.ICommand.CommandResult;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.IO.FileIO;
+import com.albinodevelopment.Model.Architechture.IContent;
 import com.albinodevelopment.Model.Components.ApplicationSettings;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
@@ -95,40 +96,58 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
         return getFromTemplate();
     }
 
-    private void generateItemGUI(MenuItem item, VBox vbox) {
-        URL template = MenuBuilderItemTemplateController.class.getResource("MenuBuilderItemTemplate.fxml");
-        ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(template, MenuBuilderItemTemplateController.class);
-        View.linkParentAndChild(this, cvc);
-
-        vbox.getChildren().add(cvc.generate(item));
-    }
-
     @Override
     public void update(Menu content) {
         menuTitle.setText(content.getTitle().toUpperCase());
         setContent(content);
         clearVBox(scrollVboxLive);
         clearVBox(scrollVboxMaster);
-        generateMenuGUI(content, scrollVboxLive);
-        generateMenuGUI(ApplicationSettings.getMasterFile(), scrollVboxMaster);
-    }
-
-    private void generateMenuGUI(Menu menu, VBox vbox) {
-        if (menu != null) {
-            for (MenuItem item : menu.getItemsArray()) {
-                generateItemGUI(item, vbox);
-            }
-        }
+        generateMasterMenuGUI();
+        generateLiveMenuGUI(content);
     }
 
     private void clearVBox(VBox vbox) {
-        ArrayList<MenuBuilderItemTemplateController> cvcs = getChildren(MenuBuilderItemTemplateController.class);
+        ArrayList<ContentViewComponent> cvcs = getChildren(ContentViewComponent.class);
         for (ContentViewComponent cvc : cvcs) {
             if (vbox.getChildren().contains(cvc.getFromTemplate())) {
                 vbox.getChildren().remove(cvc.getFromTemplate());
                 remove(cvc);
             }
         }
+    }
+
+    private <T extends ContentViewComponent> void generateMenuGUI(Menu menu, VBox vbox, URL template, Class<T> clazz) {
+        if (menu != null) {
+            for (MenuItem item : menu.getItemsArray()) {
+                Parent itemGUI = generateMenuItemGUI(item, template, clazz);
+                if (itemGUI != null) {
+                    vbox.getChildren().add(itemGUI);
+                }
+            }
+        }
+    }
+
+    private void generateLiveMenuGUI(Menu menu) {
+        Class clazz = MenuBuilderItemTemplateController.class;
+        URL template = clazz.getResource("MenuBuilderItemTemplate.fxml");
+        generateMenuGUI(menu, scrollVboxLive, template, clazz);
+    }
+
+    private void generateMasterMenuGUI() {
+        Class clazz = MasterMenuBuilderItemTemplateController.class;
+        URL template = clazz.getResource("MasterMenuBuilderItemTemplate.fxml");
+        Menu menu = ApplicationSettings.getMasterFile();
+        generateMenuGUI(menu, scrollVboxMaster, template, clazz);
+    }
+
+    private <T extends ContentViewComponent> Parent generateMenuItemGUI(MenuItem item, URL template, Class<T> clazz) {
+        Parent response = null;
+        ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(template, clazz);
+        if (cvc != null) {
+            response = cvc.generate(item);
+            View.linkParentAndChild(this, cvc);
+        }
+        return response;
     }
 
 }

@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
  *
  * @author conno
  */
-public class MasterMenuBuilderItemTemplateController extends ContentViewComponent<MenuItem>implements Initializable {
+public class MasterMenuBuilderItemTemplateController extends ContentViewComponent<MenuItem> implements Initializable {
 
     @FXML
     private Label itemNameLabel;
@@ -34,10 +34,10 @@ public class MasterMenuBuilderItemTemplateController extends ContentViewComponen
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
-    private void MoveButtonAction(ActionEvent event) {
+    private void moveButtonAction(ActionEvent event) {
     }
 
     @Override
@@ -48,8 +48,9 @@ public class MasterMenuBuilderItemTemplateController extends ContentViewComponen
 
     @Override
     public void update(MenuItem content) {
+        setContent(content);
         itemNameLabel.setText(content.getName());
         itemPriceLabel.setText(String.valueOf(content.getPrice()));
     }
-    
+
 }

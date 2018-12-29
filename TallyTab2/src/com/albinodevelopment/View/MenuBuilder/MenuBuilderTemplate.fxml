@@ -14,9 +14,9 @@
 
 <VBox prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.albinodevelopment.View.MenuBuilder.MenuBuilderTemplateController">
     <children>
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" VBox.vgrow="ALWAYS">
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" spacing="10.0" VBox.vgrow="ALWAYS">
             <children>
-                <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="701.0" minWidth="408.0" prefHeight="1080.0" prefWidth="491.0" spacing="25.0">
+                <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="701.0" minWidth="408.0" prefHeight="1080.0" prefWidth="491.0" spacing="25.0">
                     <children>
                         <HBox alignment="CENTER" layoutX="25.0" layoutY="172.0" prefHeight="100.0" prefWidth="400.0" spacing="15.0">
                             <children>
@@ -63,110 +63,127 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </padding>
                 </VBox>
-                <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1100.0" prefWidth="720.0">
-                    <content>
-                        <VBox fx:id="scrollVboxLive" alignment="TOP_CENTER" spacing="15.0">
-                            <padding>
-                                <Insets bottom="50.0" />
-                            </padding>
-                            <children>
-                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
+            <VBox alignment="CENTER" prefHeight="1400.0" prefWidth="715.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
+                     <children>
+                        <Label fx:id="menuTitle" alignment="CENTER" prefHeight="70.0" prefWidth="752.0" text="MENU TITLE" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
+                     <children>
+                        <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="70.0" prefWidth="1692.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="217.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" percentWidth="10.0" prefWidth="26.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="115.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                                    <Label fx:id="menuTitle" alignment="CENTER" prefHeight="70.0" prefWidth="752.0" text="MENU TITLE" textAlignment="CENTER" wrapText="true">
-                                        <font>
-                                            <Font name="System Bold" size="36.0" />
-                                        </font>
-                                    </Label>
-                           </children>
-                        </HBox>
-                                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
-                                    <children>
-                                        <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="70.0" prefWidth="1692.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="217.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="26.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="115.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label alignment="CENTER" prefHeight="70.0" prefWidth="234.0" text="DRINK NAME" wrapText="true">
-                                                    <font>
-                                                        <Font name="System Bold" size="17.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="108.0" text="PRICE" textAlignment="RIGHT" GridPane.columnIndex="2">
-                                                    <font>
-                                                        <Font name="System Bold" size="19.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="\$" wrapText="true" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font name="System Bold" size="19.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </VBox>
-                    </content>
-                </ScrollPane>
-                <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1100.0" prefWidth="720.0">
-                    <content>
-                        <VBox fx:id="scrollVboxMaster" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1100.0" prefWidth="715.0" spacing="15.0">
-                            <padding>
-                                <Insets bottom="50.0" />
-                            </padding>
-                            <children>
-                                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="870.0" text="MASTER FILE" wrapText="true">
+                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="234.0" text="DRINK NAME" wrapText="true">
                                  <font>
-                                    <Font name="System Bold" size="36.0" />
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="108.0" text="PRICE" textAlignment="RIGHT" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="\$" wrapText="true" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
                                  </font>
                               </Label>
                            </children>
-                                </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
-                           <children>
-                              <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="70.0" prefWidth="1692.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="217.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="26.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="115.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="70.0" prefWidth="234.0" text="DRINK NAME" wrapText="true">
-                                       <font>
-                                          <Font name="System Bold" size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="108.0" text="PRICE" textAlignment="RIGHT" GridPane.columnIndex="2">
-                                       <font>
-                                          <Font name="System Bold" size="19.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="\$" wrapText="true" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font name="System Bold" size="19.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </HBox>
-                            </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+                      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="-Infinity" prefHeight="2000.0" prefWidth="700.0">
+                     <content>
+                        <VBox fx:id="scrollVboxLive" alignment="TOP_CENTER" maxWidth="-Infinity" prefWidth="700.0" spacing="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="50.0" />
+                           </padding>
                         </VBox>
-                    </content>
-                </ScrollPane>
+                     </content>
+                      </ScrollPane>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" top="25.0" />
+               </padding>
+            </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1100.0" prefWidth="715.0" spacing="15.0">
+                      <padding>
+                          <Insets bottom="25.0" top="25.0" />
+                      </padding>
+                      <children>
+                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="70.0" prefWidth="870.0" text="MASTER FILE" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                          </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1559.0">
+                     <children>
+                        <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="70.0" prefWidth="1692.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="217.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" percentWidth="40.0" prefWidth="217.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" percentWidth="10.0" prefWidth="26.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="30.0" prefWidth="70.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="558.0" text="DRINK NAME" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="108.0" text="PRICE" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="\$" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+                      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="1100.0" prefWidth="700.0" vbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="scrollVboxMaster" alignment="TOP_CENTER" prefWidth="700.0" spacing="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="50.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                      </ScrollPane>
+                      </children>
+                  </VBox>
             </children>
         </HBox>
     </children>
