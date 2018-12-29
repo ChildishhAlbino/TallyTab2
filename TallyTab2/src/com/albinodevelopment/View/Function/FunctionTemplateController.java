@@ -85,7 +85,7 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
                     = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
-            URL url = TabItemTemplateController.class.getResource("MenuItemTemplate.fxml");
+            URL url = TabItemTemplateController.class.getResource("TabItemTemplate.fxml");
             TabItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, TabItemTemplateController.class);
             View.linkParentAndChild(this, cvc);
             itemsVbox.getChildren().add(cvc.generate(tabItemContainer));
