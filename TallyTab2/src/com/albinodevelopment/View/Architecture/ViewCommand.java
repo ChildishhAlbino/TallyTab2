@@ -31,7 +31,6 @@ public abstract class ViewCommand extends Command<View> {
         @Override
         public CommandResult execute(View commandHandler) {
             return commandHandler.getCommandHandler().handle(command);
-
         }
 
     }

@@ -9,6 +9,7 @@ import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.Model.Model;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 
@@ -104,6 +105,33 @@ public abstract class ModelCommand extends Command<Model> {
                 commandHandler.handle(new GetMenuInConstructionCommand());
             }
 
+            return response;
+        }
+
+    }
+
+    public static class AddMenuItemCommand extends ModelCommand {
+
+        private final MenuItem item;
+
+        public AddMenuItemCommand(MenuItem item) {
+            this.item = item;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            CommandResult response = CommandResult.failure;
+            if (item != null) {
+                boolean added = commandHandler.getMenuBuilder().get().add(item);
+                if (added) {
+                    response = CommandResult.success;
+                    commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(commandHandler.getMenuBuilder().get())));
+                } else {
+                    errorCode = "Couldn't add drink to menu.";
+                }
+            } else {
+                errorCode = "Item was null.";
+            }
             return response;
         }
 

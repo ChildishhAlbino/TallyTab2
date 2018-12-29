@@ -12,6 +12,7 @@ import com.albinodevelopment.IO.XML.JAXBParser;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.OutputViewComponent;
 import java.io.File;
 import java.util.regex.Matcher;
@@ -112,6 +113,18 @@ public class Controller implements ICommandHandler<ControllerCommand> {
             }
         }
 
+        return response;
+    }
+
+    public MenuItem validateMenuItem(String name, String price) {
+        MenuItem response = null;
+        Double dblPrice = Double.valueOf(price);
+        if (dblPrice != Double.NaN) {
+            Matcher matcher = Pattern.compile(FileIO.getIllegalCharacters()).matcher(name);
+            if (!matcher.find()) {
+                response = new MenuItem(dblPrice, name);
+            }
+        }
         return response;
     }
 }

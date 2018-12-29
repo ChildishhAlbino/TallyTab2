@@ -5,9 +5,9 @@
  */
 package com.albinodevelopment.View.MenuBuilder;
 
+import com.albinodevelopment.Commands.ICommand.CommandResult;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.IO.FileIO;
-import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.ApplicationSettings;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
@@ -17,7 +17,6 @@ import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.View;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,6 +67,13 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
 
     @FXML
     private void addItemButtonAction(ActionEvent event) {
+        String name = itemNameTF.getText();
+        String price = itemPriceTF.getText();
+        CommandResult result = handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateMenuItemCommand(name, price)));
+        if (result.equals(CommandResult.success)) {
+            itemNameTF.clear();
+            itemPriceTF.clear();
+        }
     }
 
     @FXML
@@ -99,7 +105,7 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
 
     @Override
     public void update(Menu content) {
-        menuTitle.setText(content.getTitle());
+        menuTitle.setText(content.getTitle().toUpperCase());
         setContent(content);
         clearVBox(scrollVboxLive);
         clearVBox(scrollVboxMaster);
