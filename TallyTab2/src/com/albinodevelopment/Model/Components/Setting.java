@@ -38,7 +38,8 @@ public abstract class Setting<T> {
 
         public MasterMenuFilePathSetting() {
             defaultValue = FileIO.getMenuDirectory() + "/MASTER.xml";
+            setToDefault();
         }
-
+        
     }
 }

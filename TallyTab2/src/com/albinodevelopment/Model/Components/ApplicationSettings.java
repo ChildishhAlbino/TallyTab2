@@ -5,10 +5,13 @@
  */
 package com.albinodevelopment.Model.Components;
 
+import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.IO.XML.JAXBParser;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Setting.MasterMenuFilePathSetting;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 
 /**
@@ -57,20 +60,32 @@ public class ApplicationSettings {
 
     public static Menu getMasterFile() {
         Menu response = null;
-        if (instance != null) {
+        try {
+            getInstance();
             String masterFilePath = String.valueOf(instance.get(SettingsManager.SettingType.masterFile).getValue());
             if (masterFilePath != null) {
-                try {
-                    Menu menu = JAXBParser.getParser(Menu.class).read(Menu.class, masterFilePath);
-                    if (menu != null) {
-                        response = menu;
-                    }
-                } catch (JAXBException ex) {
-                    ConnorLogger.log(ex.toString(), ConnorLogger.Priority.high);
+
+                Menu menu = JAXBParser.getParser(Menu.class).read(Menu.class, masterFilePath);
+                if (menu != null) {
+                    response = menu;
                 }
             }
+        } catch (JAXBException ex) {
+            ConnorLogger.log(ex.toString(), ConnorLogger.Priority.high);
         }
         return response;
+    }
+
+    private static void getInstance() {
+        try {
+            SettingsManager loaded = JAXBParser.getParser(SettingsManager.class).read(SettingsManager.class, FileIO.getApplicationDirectory() + "/settings.xml");
+            if (loaded == null) {
+                instance = new SettingsManager();
+            }
+        } catch (JAXBException ex) {
+            instance = new SettingsManager();
+            ConnorLogger.log(ex.toString(), ConnorLogger.Priority.high);
+        }
     }
 
 }

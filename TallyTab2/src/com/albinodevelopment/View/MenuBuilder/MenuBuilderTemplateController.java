@@ -8,6 +8,7 @@ package com.albinodevelopment.View.MenuBuilder;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Components.ApplicationSettings;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
@@ -88,33 +89,39 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
         return getFromTemplate();
     }
 
-    private void generateItemGUI(MenuItem item) {
+    private void generateItemGUI(MenuItem item, VBox vbox) {
         URL template = MenuBuilderItemTemplateController.class.getResource("MenuBuilderItemTemplate.fxml");
         ContentViewComponent cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(template, MenuBuilderItemTemplateController.class);
         View.linkParentAndChild(this, cvc);
 
-        scrollVboxLive.getChildren().add(cvc.generate(item));
+        vbox.getChildren().add(cvc.generate(item));
     }
 
     @Override
     public void update(Menu content) {
         menuTitle.setText(content.getTitle());
         setContent(content);
-        clearVBox();
-        generateMenuGUI(content);
+        clearVBox(scrollVboxLive);
+        clearVBox(scrollVboxMaster);
+        generateMenuGUI(content, scrollVboxLive);
+        generateMenuGUI(ApplicationSettings.getMasterFile(), scrollVboxMaster);
     }
 
-    private void generateMenuGUI(Menu menu) {
-        for (MenuItem item : menu.getItemsArray()) {
-            generateItemGUI(item);
+    private void generateMenuGUI(Menu menu, VBox vbox) {
+        if (menu != null) {
+            for (MenuItem item : menu.getItemsArray()) {
+                generateItemGUI(item, vbox);
+            }
         }
     }
 
-    private void clearVBox() {
+    private void clearVBox(VBox vbox) {
         ArrayList<MenuBuilderItemTemplateController> cvcs = getChildren(MenuBuilderItemTemplateController.class);
         for (ContentViewComponent cvc : cvcs) {
-            scrollVboxLive.getChildren().remove(cvc.getFromTemplate());
-            remove(cvc);
+            if (vbox.getChildren().contains(cvc.getFromTemplate())) {
+                vbox.getChildren().remove(cvc.getFromTemplate());
+                remove(cvc);
+            }
         }
     }
 
