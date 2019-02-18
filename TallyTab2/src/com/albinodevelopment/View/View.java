@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 public class View extends ViewComponentParent implements IView {
 
     private ICommandHandler<ControllerCommand> commandHandler;
-
+    
     @Override
     public ICommandHandler<ControllerCommand> getCommandHandler() {
         return commandHandler;
@@ -45,7 +45,6 @@ public class View extends ViewComponentParent implements IView {
                 System.exit(0);
             });
         });
-
         linkParentAndChild(this, window);
     }
 
@@ -55,7 +54,7 @@ public class View extends ViewComponentParent implements IView {
         stage.setScene(scene);
         window.setStage(stage);
         window.show();
-
+        
         return window;
     }
 
