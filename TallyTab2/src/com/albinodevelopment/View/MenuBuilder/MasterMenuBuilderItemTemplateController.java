@@ -5,8 +5,10 @@
  */
 package com.albinodevelopment.View.MenuBuilder;
 
+import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.Architecture.ViewComponent;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,6 +40,9 @@ public class MasterMenuBuilderItemTemplateController extends ContentViewComponen
 
     @FXML
     private void moveButtonAction(ActionEvent event) {
+        String name = itemNameLabel.getText();
+        String price = itemPriceLabel.getText();
+        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateMenuItemCommand(name, price)));
     }
 
     @Override
