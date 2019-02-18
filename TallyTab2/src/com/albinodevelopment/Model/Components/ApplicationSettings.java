@@ -77,14 +77,16 @@ public class ApplicationSettings {
     }
 
     private static void getInstance() {
-        try {
-            SettingsManager loaded = JAXBParser.getParser(SettingsManager.class).read(SettingsManager.class, FileIO.getApplicationDirectory() + "/settings.xml");
-            if (loaded == null) {
+        if (instance == null) {
+            try {
+                SettingsManager loaded = JAXBParser.getParser(SettingsManager.class).read(SettingsManager.class, FileIO.getApplicationDirectory() + "/settings.xml");
+                if (loaded == null) {
+                    instance = new SettingsManager();
+                }
+            } catch (JAXBException ex) {
                 instance = new SettingsManager();
+                ConnorLogger.log(ex.toString(), ConnorLogger.Priority.high);
             }
-        } catch (JAXBException ex) {
-            instance = new SettingsManager();
-            ConnorLogger.log(ex.toString(), ConnorLogger.Priority.high);
         }
     }
 

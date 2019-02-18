@@ -136,5 +136,32 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
     }
+    
+    public static class RemoveMenuItemCommand extends ModelCommand {
+
+        private final MenuItem item;
+
+        public RemoveMenuItemCommand(MenuItem item) {
+            this.item = item;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            CommandResult response = CommandResult.failure;
+            if (item != null) {
+                boolean removed = commandHandler.getMenuBuilder().get().remove(item);
+                if (removed) {
+                    response = CommandResult.success;
+                    commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(commandHandler.getMenuBuilder().get())));
+                } else {
+                    errorCode = "Couldn't remove drink from menu.";
+                }
+            } else {
+                errorCode = "Item was null.";
+            }
+            return response;
+        }
+
+    }
 
 }

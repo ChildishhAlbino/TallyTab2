@@ -74,7 +74,7 @@ public class Menu extends Content {
     public boolean add(MenuItem item) {
         boolean response = false;
         if (contains(item.getName())) {
-            ConnorLogger.log("Item: " + item.getName() + "already in list.", ConnorLogger.Priority.medium);
+            ConnorLogger.log("Item: " + item.getName() + " already in list.", ConnorLogger.Priority.medium);
         } else {
             items.add(item);
             response = true;
@@ -86,10 +86,10 @@ public class Menu extends Content {
     public boolean remove(MenuItem item) {
         boolean response = false;
         if (contains(item.getName())) {
-            items.remove(item);
+            items.remove(getByName(item.getName()));
             response = true;
         } else {
-            ConnorLogger.log("Item:" + item.getName() + "wasn't in list.", ConnorLogger.Priority.medium);
+            ConnorLogger.log("Item: " + item.getName() + " wasn't in list.", ConnorLogger.Priority.medium);
         }
         Sort();
         return response;

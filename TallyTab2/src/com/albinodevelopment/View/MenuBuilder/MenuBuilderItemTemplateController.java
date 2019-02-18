@@ -5,8 +5,10 @@
  */
 package com.albinodevelopment.View.MenuBuilder;
 
+import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -37,6 +39,9 @@ public class MenuBuilderItemTemplateController extends ContentViewComponent<Menu
 
     @FXML
     private void removeButtonAction(ActionEvent event) {
+        String name = itemNameLabel.getText();
+        String price = itemPriceLabel.getText();
+        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateRemoveMenuItemCommand(name, price)));
     }
 
     @Override

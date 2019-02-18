@@ -6,6 +6,7 @@
 package com.albinodevelopment.Controller;
 
 import com.albinodevelopment.Commands.Command;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.Menu;
@@ -98,10 +99,34 @@ public abstract class ControllerCommand extends Command<Controller> {
         public CommandResult execute(Controller commandHandler) {
             CommandResult response = CommandResult.failure;
             MenuItem item = commandHandler.validateMenuItem(name, price);
-            if(item != null){
+            if (item != null) {
                 response = commandHandler.handle(new PassToModelCommand(new ModelCommand.AddMenuItemCommand(item)));
             } else {
                 errorCode = "Item was null.";
+            }
+            return response;
+        }
+
+    }
+
+    public static class ValidateRemoveMenuItemCommand extends ControllerCommand {
+
+        private final String name;
+        private final String price;
+
+        public ValidateRemoveMenuItemCommand(String name, String price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        @Override
+        public CommandResult execute(Controller commandHandler) {
+            CommandResult response = CommandResult.failure;
+            MenuItem item = commandHandler.validateMenuItem(name, price);
+            if (item != null) {
+                response = commandHandler.handle(new PassToModelCommand(new ModelCommand.RemoveMenuItemCommand(item)));
+            } else {
+                errorCode = "Menu item was null.";
             }
             return response;
         }
