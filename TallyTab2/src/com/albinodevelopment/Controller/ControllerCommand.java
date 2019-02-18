@@ -99,7 +99,7 @@ public abstract class ControllerCommand extends Command<Controller> {
             CommandResult response = CommandResult.failure;
             MenuItem item = commandHandler.validateMenuItem(name, price);
             if(item != null){
-                response = commandHandler.handle(new PassToModelCommand(new ModelCommand.AddMenuItemCommand(item)));;
+                response = commandHandler.handle(new PassToModelCommand(new ModelCommand.AddMenuItemCommand(item)));
             } else {
                 errorCode = "Item was null.";
             }
