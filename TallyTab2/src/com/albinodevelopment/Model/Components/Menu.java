@@ -41,7 +41,6 @@ public class Menu extends Content {
     public Menu(String title) {
         this.title = title;
         this.items = new ArrayList<>();
-
     }
 
     public ArrayList<MenuItem> getItemsArray() {

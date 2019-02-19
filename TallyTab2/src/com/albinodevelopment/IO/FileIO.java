@@ -60,6 +60,7 @@ public class FileIO {
 
     public static boolean fileStructureExists() {
         boolean ret = true;
+        
         if (!new File(getApplicationDirectory()).exists()) {
             ret = false;
         }
@@ -109,7 +110,7 @@ public class FileIO {
         if (selected != null) {
             s = selected.getAbsolutePath();
         } else {
-            ConnorLogger.log("ERROR: Directory selected was cancelled.", ConnorLogger.Priority.medium);
+            ConnorLogger.log("ERROR: Directory selector was cancelled.", ConnorLogger.Priority.medium);
         }
         return s;
     }

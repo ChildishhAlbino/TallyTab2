@@ -18,11 +18,9 @@ import javax.xml.bind.Unmarshaller;
 public class JAXBParser {
 
     private JAXBContext jaxbContext;
-//    private Class clazz; 
 
     public <T> JAXBParser(Class<T> clazz) throws JAXBException {
         jaxbContext = JAXBContext.newInstance(clazz);
-//        this.clazz = clazz;
     }
 
     public boolean write(String directory, XML_able toXML) throws JAXBException {
