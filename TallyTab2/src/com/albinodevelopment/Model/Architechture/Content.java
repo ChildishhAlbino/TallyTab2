@@ -15,6 +15,10 @@ import java.io.File;
 public abstract class Content implements IContent, XML_able {
     protected File file;
 
+    public void setFile(File file) {
+        this.file = file;
+    }
+
     public File getFile() {
         return file;
     }

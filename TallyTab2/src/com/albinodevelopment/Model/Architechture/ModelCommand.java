@@ -175,9 +175,18 @@ public abstract class ModelCommand extends Command<Model> {
         @Override
         public CommandResult execute(Model commandHandler) {
             commandHandler.getMenuBuilder().get().changeTitle(newTitle);
-            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(commandHandler.getMenuBuilder().get())));      
+            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(commandHandler.getMenuBuilder().get())));
         }
 
     }
 
+    public static class SaveMenuCommand extends ModelCommand {
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            boolean saved = commandHandler.getMenuBuilder().save();
+            return (saved == true ? CommandResult.success : CommandResult.failure);
+        }
+
+    }
 }

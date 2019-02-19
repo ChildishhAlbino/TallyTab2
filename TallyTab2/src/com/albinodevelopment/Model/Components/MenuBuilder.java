@@ -31,15 +31,12 @@ public class MenuBuilder {
         try {
             if (menu.getFile() == null) {
                 // new file
-                JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory(menu.getTitle()), menu);
-
+                File file = new File(FileIO.getMenuDirectory(menu.getTitle() + ".xml"));
+                menu.setFile(file);
+                JAXBParser.getParser(Menu.class).write(file.getAbsolutePath(), menu);
             } else {
-                // rename existing file
-                menu.getFile().renameTo(new File(FileIO.getMenuDirectory(menu.getTitle())));
-                // save to that new path
-                JAXBParser.getParser(Menu.class).write(menu.getFile().getAbsolutePath(), menu);
+                JAXBParser.getParser(Menu.class).write(menu.getFile(), menu);
             }
-
         } catch (JAXBException ex) {
             response = false;
             ConnorLogger.log("Exception thrown while saving file: " + menu.getTitle(), ConnorLogger.Priority.high);

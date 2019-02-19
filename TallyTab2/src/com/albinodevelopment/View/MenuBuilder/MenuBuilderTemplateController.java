@@ -9,6 +9,7 @@ import com.albinodevelopment.Commands.ICommand.CommandResult;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Model.Architechture.IContent;
+import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.ApplicationSettings;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuItem;
@@ -82,6 +83,7 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
 
     @FXML
     private void saveButtonAction(ActionEvent event) {
+        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.PassToModelCommand(new ModelCommand.SaveMenuCommand())));
     }
 
     @FXML

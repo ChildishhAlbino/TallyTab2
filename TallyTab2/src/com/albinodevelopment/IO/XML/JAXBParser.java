@@ -23,6 +23,12 @@ public class JAXBParser {
         jaxbContext = JAXBContext.newInstance(clazz);
     }
 
+    public boolean write(File file, XML_able toXML) throws JAXBException {
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.marshal(toXML, file);
+        return true;
+    }
+
     public boolean write(String directory, XML_able toXML) throws JAXBException {
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.marshal(toXML, new File(directory));
