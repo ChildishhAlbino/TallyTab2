@@ -5,8 +5,10 @@
  */
 package com.albinodevelopment.Model.Components;
 
+import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.IO.XML.JAXBParser;
 import com.albinodevelopment.Logging.ConnorLogger;
+import java.io.File;
 import javax.xml.bind.JAXBException;
 
 /**
@@ -25,7 +27,23 @@ public class MenuBuilder {
     }
 
     public boolean save() {
-        boolean response = false;
+        boolean response = true;
+        try {
+            if (menu.getFile() == null) {
+                // new file
+                JAXBParser.getParser(Menu.class).write(FileIO.getMenuDirectory(menu.getTitle()), menu);
+
+            } else {
+                // rename existing file
+                menu.getFile().renameTo(new File(FileIO.getMenuDirectory(menu.getTitle())));
+                // save to that new path
+                JAXBParser.getParser(Menu.class).write(menu.getFile().getAbsolutePath(), menu);
+            }
+
+        } catch (JAXBException ex) {
+            response = false;
+            ConnorLogger.log("Exception thrown while saving file: " + menu.getTitle(), ConnorLogger.Priority.high);
+        }
 
         return response;
     }

@@ -6,11 +6,17 @@
 package com.albinodevelopment.Model.Architechture;
 
 import com.albinodevelopment.IO.XML.XML_able;
+import java.io.File;
 
 /**
  *
  * @author conno
  */
 public abstract class Content implements IContent, XML_able {
+    protected File file;
 
+    public File getFile() {
+        return file;
+    }
+    
 }

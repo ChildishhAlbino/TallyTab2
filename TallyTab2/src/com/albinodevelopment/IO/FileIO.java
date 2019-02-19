@@ -43,6 +43,10 @@ public class FileIO {
     public static String getFunctionDirectory() {
         return DEFAULT_DIRECTORY + FUNCTION_SUBFOLDER;
     }
+    
+    public static String getMenuDirectory(String fileName) {
+        return DEFAULT_DIRECTORY + MENU_SUBFOLDER + "\\" + fileName;
+    }
 
     private static String getLocalAppFolder() {
         String directory;
