@@ -5,10 +5,13 @@
  */
 package com.albinodevelopment.Model.Components;
 
+import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.Content;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -107,4 +110,8 @@ public class Menu extends Content {
         Collections.sort(items);
     }
 
+    public void changeTitle(String newTitle) {
+        title = newTitle;
+    }
 }
+

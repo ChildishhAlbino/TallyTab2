@@ -64,6 +64,9 @@ public class MenuBuilderTemplateController extends ContentViewComponent<Menu> im
 
     @FXML
     private void changeDrinksListNameButtonAction(ActionEvent event) {
+        String newTitle = menuTitleTF.getText();
+        menuTitleTF.clear();
+        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateMenuTitleChangeCommand(newTitle)));
     }
 
     @FXML

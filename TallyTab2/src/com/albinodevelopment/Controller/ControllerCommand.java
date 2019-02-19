@@ -6,7 +6,6 @@
 package com.albinodevelopment.Controller;
 
 import com.albinodevelopment.Commands.Command;
-import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.Menu;
@@ -129,6 +128,23 @@ public abstract class ControllerCommand extends Command<Controller> {
                 errorCode = "Menu item was null.";
             }
             return response;
+        }
+
+    }
+
+    public static class ValidateMenuTitleChangeCommand extends ControllerCommand {
+
+        private final String newTitle;
+
+        public ValidateMenuTitleChangeCommand(String newTitle) {
+            this.newTitle = newTitle;
+        }
+
+        @Override
+        public CommandResult execute(Controller commandHandler) {
+            boolean validTitle = commandHandler.validateMenuTitleChange(newTitle);
+            commandHandler.handle(new PassToModelCommand(new ModelCommand.ChangeMenuTitleCommand(newTitle) ));
+            return (validTitle == true ? CommandResult.success : CommandResult.failure);
         }
 
     }

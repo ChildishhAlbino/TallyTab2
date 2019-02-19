@@ -136,7 +136,7 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
     }
-    
+
     public static class RemoveMenuItemCommand extends ModelCommand {
 
         private final MenuItem item;
@@ -160,6 +160,22 @@ public abstract class ModelCommand extends Command<Model> {
                 errorCode = "Item was null.";
             }
             return response;
+        }
+
+    }
+
+    public static class ChangeMenuTitleCommand extends ModelCommand {
+
+        private final String newTitle;
+
+        public ChangeMenuTitleCommand(String newTitle) {
+            this.newTitle = newTitle;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            commandHandler.getMenuBuilder().get().changeTitle(newTitle);
+            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateMenuBuilderWindowCommand(commandHandler.getMenuBuilder().get())));      
         }
 
     }
