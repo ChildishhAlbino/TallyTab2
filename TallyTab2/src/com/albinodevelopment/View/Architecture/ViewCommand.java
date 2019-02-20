@@ -9,6 +9,7 @@ import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.Menu;
+import com.albinodevelopment.View.Function.FunctionTemplateController;
 import com.albinodevelopment.View.Function.NewFunctionWindowController;
 import com.albinodevelopment.View.Home.MainWindow;
 import com.albinodevelopment.View.View;
@@ -62,6 +63,32 @@ public abstract class ViewCommand extends Command<View> {
             return CommandResult.success;
         }
 
+    }
+
+    public static class UpdateFunctionComponent extends ViewCommand {
+
+        private final Function function;
+
+        public UpdateFunctionComponent(Function function) {
+            this.function = function;
+        }
+
+        @Override
+        public CommandResult execute(View commandHandler) {
+            Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
+            MainWindow mainWindow = col.iterator().next();
+            Collection<FunctionTemplateController> functions = mainWindow.getChildren(FunctionTemplateController.class);
+            CommandResult response = CommandResult.failure;
+            
+            for (FunctionTemplateController ftc : functions) {
+                if (ftc.getContent().getTitle() == function.getTitle()) {
+                    ftc.generate(function);
+                    response = CommandResult.success;
+                    break;
+                }
+            }
+            return response;
+        }
     }
 
     public static class UpdateMenuBuilderWindowCommand extends ViewCommand {

@@ -83,6 +83,7 @@ public class FunctionTab extends Content {
             MenuItem item = menu.getByName(itemName);
             int current = tally.get(item);
             tally.put(item, current + delta);
+            return true;
         }
         return false;
     }

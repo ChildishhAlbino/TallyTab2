@@ -13,6 +13,7 @@ import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
 import com.albinodevelopment.View.View;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,21 +71,25 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
     @Override
     public Parent generate(Function content) {
         setContent(content);
-        title.setText(content.getTitle());
-        currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
-        limit.setText(String.valueOf(content.getTab().getLimit()));
-        percentage.setText(String.valueOf(content.getTab().getPercent()));
-        progressBar.setProgress(content.getTab().getPercent());
-
-        generateMenuGUI(content.getTab());
-
+        update(content);
         return getFromTemplate();
+    }
+    
+    private void clearVBox(VBox vbox) {
+        ArrayList<ContentViewComponent> cvcs = getChildren(ContentViewComponent.class);
+        for (ContentViewComponent cvc : cvcs) {
+            if (vbox.getChildren().contains(cvc.getFromTemplate())) {
+                vbox.getChildren().remove(cvc.getFromTemplate());
+                remove(cvc);
+            }
+        }
     }
 
     private void generateMenuGUI(FunctionTab tab) {
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
-                    = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()));
+                    = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()), getContent().getTitle());
+            
             URL url = TabItemTemplateController.class.getResource("TabItemTemplate.fxml");
             TabItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, TabItemTemplateController.class);
             View.linkParentAndChild(this, cvc);
@@ -94,7 +99,13 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
 
     @Override
     public void update(Function content) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        clearVBox(itemsVbox);
+        title.setText(content.getTitle());
+        currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
+        limit.setText(String.valueOf(content.getTab().getLimit()));
+        percentage.setText(String.valueOf(content.getTab().getPercent()));
+        progressBar.setProgress(content.getTab().getPercent());
+        generateMenuGUI(content.getTab());
     }
 
 }

@@ -189,4 +189,28 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
     }
+
+    public static class ChangeItemTallyCommand extends ModelCommand {
+
+        private final String functionTitle;
+        private final String itemName;
+        private final int delta;
+
+        public ChangeItemTallyCommand(String functionTitle, String itemName, int delta) {
+            this.functionTitle = functionTitle;
+            this.itemName = itemName;
+            this.delta = delta;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            boolean tallyChanged = commandHandler.getByName(functionTitle).getTab().changeMenuItemCount(delta, itemName);
+            if (tallyChanged == false) {
+                errorCode = "Couldn't update item tally.";
+                return CommandResult.failure;
+            }
+            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
+        }
+
+    }
 }

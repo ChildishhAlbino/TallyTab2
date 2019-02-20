@@ -5,9 +5,12 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.Model.Components.TabItemContainer;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -48,26 +51,39 @@ public class TabItemTemplateController extends ContentViewComponent<TabItemConta
 
     @FXML
     private void handlePlusButton(ActionEvent event) {
+        // + 1
+        handle(
+                new ViewCommand.PassToControllerCommand(
+                        new ControllerCommand.PassToModelCommand(
+                                new ModelCommand.ChangeItemTallyCommand(
+                                        getContent().getFunctionTitle(), 
+                                        itemName.getText(), +1))));
     }
 
     @FXML
     private void handleMinusButton(ActionEvent event) {
+        // - 1
+         handle(
+                new ViewCommand.PassToControllerCommand(
+                        new ControllerCommand.PassToModelCommand(
+                                new ModelCommand.ChangeItemTallyCommand(
+                                        getContent().getFunctionTitle(), 
+                                        itemName.getText(), -1))));
     }
 
     @Override
     public Parent generate(TabItemContainer content) {
         setContent(content);
-
-        itemName.setText(content.getItem().getName());
-        itemPrice.setText(String.valueOf(content.getItem().getPrice()));
-        currentAmt.setText(String.valueOf(content.getTally()));
-        subtotal.setText(String.valueOf(content.getSubtotal()));
+        update(content);
         return getFromTemplate();
     }
 
     @Override
     public void update(TabItemContainer content) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        itemName.setText(content.getItem().getName());
+        itemPrice.setText(String.valueOf(content.getItem().getPrice()));
+        currentAmt.setText(String.valueOf(content.getTally()));
+        subtotal.setText(String.valueOf(content.getSubtotal()));
     }
 
 }
