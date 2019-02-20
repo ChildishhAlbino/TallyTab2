@@ -82,6 +82,8 @@ public class View extends ViewComponentParent implements IView {
         if (command.execute(this) == ICommand.CommandResult.failure) {
             if (command.getErrorCode() != null) {
                 ConnorLogger.log(command.getClass().getSimpleName() + ": " + command.getErrorCode(), ConnorLogger.Priority.medium);
+            } else {
+                ConnorLogger.log(command.getClass().getSimpleName() + ": No error code could be found.", ConnorLogger.Priority.medium);
             }
             response = ICommand.CommandResult.failure;
         }
