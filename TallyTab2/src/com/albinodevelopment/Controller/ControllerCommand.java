@@ -143,8 +143,30 @@ public abstract class ControllerCommand extends Command<Controller> {
         @Override
         public CommandResult execute(Controller commandHandler) {
             boolean validTitle = commandHandler.validateMenuTitleChange(newTitle);
-            commandHandler.handle(new PassToModelCommand(new ModelCommand.ChangeMenuTitleCommand(newTitle) ));
+            commandHandler.handle(new PassToModelCommand(new ModelCommand.ChangeMenuTitleCommand(newTitle)));
             return (validTitle == true ? CommandResult.success : CommandResult.failure);
+        }
+
+    }
+
+    public static class ValidateNewLimitCommand extends ControllerCommand {
+
+        private final String input;
+        private final String functionTitle;
+
+        public ValidateNewLimitCommand(String input, String functionTitle) {
+            this.input = input;
+            this.functionTitle = functionTitle;
+        }
+
+        @Override
+        public CommandResult execute(Controller commandHandler) {
+            Double valid = commandHandler.validateLimit(input);
+            if(valid != null){
+                return commandHandler.handle(new PassToModelCommand(new ModelCommand.SetLimitCommand(functionTitle, valid)));
+            }
+            errorCode = "Input was invalid as a limit.";
+            return CommandResult.failure;
         }
 
     }

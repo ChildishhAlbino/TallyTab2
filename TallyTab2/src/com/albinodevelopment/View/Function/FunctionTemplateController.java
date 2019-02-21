@@ -5,12 +5,14 @@
  */
 package com.albinodevelopment.View.Function;
 
+import com.albinodevelopment.Controller.ControllerCommand;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.MenuItem;
 import com.albinodevelopment.Model.Components.TabItemContainer;
 import com.albinodevelopment.View.Architecture.ContentViewComponent;
 import com.albinodevelopment.View.Architecture.TemplateLoaderFactory;
+import com.albinodevelopment.View.Architecture.ViewCommand;
 import com.albinodevelopment.View.View;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,6 +68,9 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
 
     @FXML
     private void editLimitButtonAction(ActionEvent event) {
+        String input = limitEditTF.getText();
+        limitEditTF.clear();
+        handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.ValidateNewLimitCommand(input, getContent().getTitle())));
     }
 
     @Override
@@ -74,7 +79,7 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         update(content);
         return getFromTemplate();
     }
-    
+
     private void clearVBox(VBox vbox) {
         ArrayList<ContentViewComponent> cvcs = getChildren(ContentViewComponent.class);
         for (ContentViewComponent cvc : cvcs) {
@@ -89,7 +94,7 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         for (MenuItem item : tab.getMenu().getItemsArray()) {
             TabItemContainer tabItemContainer
                     = new TabItemContainer(item, tab.getItemSubtotal(item.getName()), tab.getTally(item.getName()), getContent().getTitle());
-            
+
             URL url = TabItemTemplateController.class.getResource("TabItemTemplate.fxml");
             TabItemTemplateController cvc = TemplateLoaderFactory.getLoader().getClassFromTemplate(url, TabItemTemplateController.class);
             View.linkParentAndChild(this, cvc);
@@ -103,7 +108,7 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
         title.setText(content.getTitle());
         currentVal.setText(String.valueOf(content.getTab().getCurrentBalance()));
         limit.setText(String.valueOf(content.getTab().getLimit()));
-        percentage.setText(String.valueOf(content.getTab().getPercent()));
+        percentage.setText(String.valueOf(content.getTab().getPercent() * 100) + "%");
         progressBar.setProgress(content.getTab().getPercent());
         generateMenuGUI(content.getTab());
     }

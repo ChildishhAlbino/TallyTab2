@@ -213,4 +213,26 @@ public abstract class ModelCommand extends Command<Model> {
         }
 
     }
+
+    public static class SetLimitCommand extends ModelCommand {
+
+        private final String functionTitle;
+        private final Double limit;
+
+        public SetLimitCommand(String functionTitle, Double limit) {
+            this.functionTitle = functionTitle;
+            this.limit = limit;
+        }
+
+        @Override
+        public CommandResult execute(Model commandHandler) {
+            boolean set = commandHandler.getByName(functionTitle).getTab().setLimit(limit);
+            if (set == false) {
+                errorCode = "New limit was less than current balance.";
+                return CommandResult.failure;
+            }
+            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
+        }
+
+    }
 }

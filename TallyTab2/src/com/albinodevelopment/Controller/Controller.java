@@ -129,14 +129,26 @@ public class Controller implements ICommandHandler<ControllerCommand> {
         }
         return response;
     }
-    
-    public boolean validateMenuTitleChange(String newTitle){
+
+    public boolean validateMenuTitleChange(String newTitle) {
         boolean response = true;
         Pattern pattern = Pattern.compile(FileIO.getIllegalCharacters());
         Matcher matcher = pattern.matcher(newTitle);
         if (matcher.matches()) {
             ConnorLogger.log("New title contained illegal characters.", ConnorLogger.Priority.high);
             response = false;
+        }
+        return response;
+    }
+
+    public Double validateNewLimitInput(String newLimit) {
+        Double response = null;
+        Double test = Double.valueOf(newLimit);
+        if (newLimit.equals("")) {
+            response = Double.POSITIVE_INFINITY;
+        }
+        if (test != Double.NaN) {
+            response = test;
         }
         return response;
     }

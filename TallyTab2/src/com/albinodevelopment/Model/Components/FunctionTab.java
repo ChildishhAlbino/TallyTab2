@@ -6,6 +6,8 @@
 package com.albinodevelopment.Model.Components;
 
 import com.albinodevelopment.Model.Architechture.Content;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -44,7 +46,7 @@ public class FunctionTab extends Content {
     }
 
     public Double getPercent() {
-        return percent;
+        return round(percent, 2);
     }
 
     public FunctionTab(Double limit, Double currentBalance, Menu menu, Double percent) {
@@ -57,12 +59,20 @@ public class FunctionTab extends Content {
     }
 
     public Double getLimit() {
-        return limit;
+        return round(limit, 2);
+    }
+
+    public boolean setLimit(Double limit) {
+        if (limit >= getCurrentBalance()) {
+            this.limit = limit;
+            return true;
+        }
+        return false;
     }
 
     public double getCurrentBalance() {
         calculateValues();
-        return currentBalance;
+        return round(currentBalance, 2);
     }
 
     public Menu getMenu() {
@@ -111,7 +121,7 @@ public class FunctionTab extends Content {
         MenuItem item = menu.getByName(itemName);
         Double subtotal = item.getPrice() * amount;
 
-        return subtotal;
+        return round(subtotal, 2);
     }
 
     public Double availableFunds() {
@@ -123,4 +133,16 @@ public class FunctionTab extends Content {
         return tally.get(menu.getByName(itemName));
     }
 
+    public static double round(double value, int places) {
+        if (Double.isInfinite(value) == false) {
+            if (places < 0) {
+                throw new IllegalArgumentException();
+            }
+
+            BigDecimal bd = new BigDecimal(value);
+            bd = bd.setScale(places, RoundingMode.HALF_UP);
+            return bd.doubleValue();
+        }
+        return value;
+    }
 }
