@@ -9,8 +9,6 @@ package com.albinodevelopment.Exceptions;
  *
  * @author conno
  */
-public class Exceptions {
-    public static class FunctionNotFoundException extends Exception {
-        
-    }
+public class FunctionNotFoundException extends Exception{
+    
 }
