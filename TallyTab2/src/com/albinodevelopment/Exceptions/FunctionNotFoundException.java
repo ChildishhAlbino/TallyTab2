@@ -10,5 +10,7 @@ package com.albinodevelopment.Exceptions;
  * @author conno
  */
 public class FunctionNotFoundException extends Exception{
-    
+    public FunctionNotFoundException(String message){
+        super(message);
+    }
 }

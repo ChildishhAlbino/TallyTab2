@@ -8,10 +8,10 @@ package com.albinodevelopment.Model;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
+import com.albinodevelopment.Exceptions.FunctionNotFoundException;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
-import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.Model.Components.MenuBuilder;
 import com.albinodevelopment.View.Architecture.ViewCommand;
 import java.util.ArrayList;
@@ -62,21 +62,28 @@ public class Model implements ICommandHandler<ModelCommand> {
     }
 
     public boolean contains(String functionName) {
-        return getByName(functionName) != null;
+        try {
+            return getByName(functionName) != null;
+        } catch (FunctionNotFoundException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.low);
+        } finally {
+            return false;
+        }
     }
 
     public boolean remove(String functionName) {
-        Function function = getByName(functionName);
-        boolean response = false;
-        if (function != null) {
+        try {
+            Function function = getByName(functionName);
             functions.remove(function);
-            response = true;
+            return true;
+        } catch (FunctionNotFoundException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.high);
+        } finally {
+            return false;
         }
-
-        return response;
     }
 
-    public Function getByName(String functionName) {
+    public Function getByName(String functionName) throws FunctionNotFoundException {
         Function f = null;
         for (Function function : functions) {
             if (function.getTitle().equals(functionName)) {
@@ -84,7 +91,9 @@ public class Model implements ICommandHandler<ModelCommand> {
                 break;
             }
         }
-
+        if (f == null) {
+            throw new FunctionNotFoundException("Function: " + functionName + " cannot be found.");
+        }
         return f;
     }
 
