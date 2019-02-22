@@ -7,6 +7,8 @@ package com.albinodevelopment.View.Architecture;
 
 import com.albinodevelopment.Commands.Command;
 import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.Menu;
 import com.albinodevelopment.View.Function.FunctionTemplateController;
@@ -56,11 +58,16 @@ public abstract class ViewCommand extends Command<View> {
 
         @Override
         public CommandResult execute(View commandHandler) {
-            Collection<NewFunctionWindowController> col = commandHandler.getChildren(NewFunctionWindowController.class);
-            col.iterator().next().close();
-            commandHandler.GenerateFunctionGUI(function);
+            try {
+                Collection<NewFunctionWindowController> col = commandHandler.getChildren(NewFunctionWindowController.class);
+                col.iterator().next().close();
+                commandHandler.GenerateFunctionGUI(function);
+                return CommandResult.success;
+            } catch (ViewComponentNotFoundException ex) {
+                ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.high);
+                return CommandResult.failure;
+            }
 
-            return CommandResult.success;
         }
 
     }
@@ -75,19 +82,21 @@ public abstract class ViewCommand extends Command<View> {
 
         @Override
         public CommandResult execute(View commandHandler) {
-            Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
-            MainWindow mainWindow = col.iterator().next();
-            Collection<FunctionTemplateController> functions = mainWindow.getChildren(FunctionTemplateController.class);
-            CommandResult response = CommandResult.failure;
-            
-            for (FunctionTemplateController ftc : functions) {
-                if (ftc.getContent().getTitle() == function.getTitle()) {
-                    ftc.generate(function);
-                    response = CommandResult.success;
-                    break;
+            try {
+                Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
+                MainWindow mainWindow = col.iterator().next();
+                Collection<FunctionTemplateController> functions = mainWindow.getChildren(FunctionTemplateController.class);
+                for (FunctionTemplateController ftc : functions) {
+                    if (ftc.getContent().getTitle() == function.getTitle()) {
+                        ftc.generate(function);
+                        break;
+                    }
                 }
+                return CommandResult.success;
+            } catch (ViewComponentNotFoundException ex) {
+                ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.medium);
+                return CommandResult.failure;
             }
-            return response;
         }
     }
 
@@ -101,12 +110,16 @@ public abstract class ViewCommand extends Command<View> {
 
         @Override
         public CommandResult execute(View commandHandler) {
-            Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
-            MainWindow mainwindow = col.iterator().next();
-            mainwindow.updateMenuBuilderComponent(menu);
-            return CommandResult.success;
-        }
+            try {
+                Collection<MainWindow> col = commandHandler.getChildren(MainWindow.class);
+                MainWindow mainwindow = col.iterator().next();
+                mainwindow.updateMenuBuilderComponent(menu);
 
+                return CommandResult.success;
+            } catch (ViewComponentNotFoundException ex) {
+                return CommandResult.success;
+            }
+        }
     }
 
 }

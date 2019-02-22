@@ -5,6 +5,7 @@
  */
 package com.albinodevelopment.View.Architecture;
 
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
 import java.util.Collection;
 
 /**
@@ -15,7 +16,7 @@ public interface IViewComponentParent {
 
     Collection getChildren();
 
-    <T> Collection getChildren(Class<T> classFilter);
+    <T> Collection getChildren(Class<T> classFilter) throws ViewComponentNotFoundException;
 
     void remove(ViewComponent child);
 }

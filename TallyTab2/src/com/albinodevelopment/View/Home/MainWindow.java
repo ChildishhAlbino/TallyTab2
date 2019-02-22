@@ -6,6 +6,8 @@
 package com.albinodevelopment.View.Home;
 
 import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Architechture.ModelCommand;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.Menu;
@@ -69,10 +71,11 @@ public class MainWindow extends Window implements Initializable {
 
     @FXML
     private void handleMenuBuilderButton(ActionEvent event) {
-        Collection col = getChildren(MenuBuilderTemplateController.class);
-        if (col.isEmpty()) {
+        try {
+            Collection col = getChildren(MenuBuilderTemplateController.class);
+        } catch (ViewComponentNotFoundException ex) {
             handle(new ViewCommand.PassToControllerCommand(new ControllerCommand.PassToModelCommand(new ModelCommand.GetMenuInConstructionCommand())));
-        } else {
+        } finally {
             tabPane.getSelectionModel().select(menuBuilderTab);
         }
     }
@@ -82,15 +85,16 @@ public class MainWindow extends Window implements Initializable {
     }
 
     public void updateMenuBuilderComponent(Menu menu) {
-        Collection<MenuBuilderTemplateController> col = getChildren(MenuBuilderTemplateController.class);
-        if (col.isEmpty()) {
-            openNewMenuBuilderTab(menu);
-        } else {
+        try {
+            Collection<MenuBuilderTemplateController> col = getChildren(MenuBuilderTemplateController.class);
             ContentViewComponent cvc = col.iterator().next();
             if (cvc != null) {
                 cvc.update(menu);
             }
-        }
+        } catch (ViewComponentNotFoundException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.medium);
+            openNewMenuBuilderTab(menu);
+        } 
     }
 
     private void openNewMenuBuilderTab(Menu menu) {

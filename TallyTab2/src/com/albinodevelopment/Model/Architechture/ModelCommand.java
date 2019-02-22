@@ -6,6 +6,8 @@
 package com.albinodevelopment.Model.Architechture;
 
 import com.albinodevelopment.Commands.Command;
+import com.albinodevelopment.Exceptions.FunctionNotFoundException;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.Menu;
@@ -204,14 +206,18 @@ public abstract class ModelCommand extends Command<Model> {
 
         @Override
         public CommandResult execute(Model commandHandler) {
-            boolean tallyChanged = commandHandler.getByName(functionTitle).getTab().changeMenuItemCount(delta, itemName);
-            if (tallyChanged == false) {
-                errorCode = "Couldn't update item tally.";
+            try {
+                boolean tallyChanged = commandHandler.getByName(functionTitle).getTab().changeMenuItemCount(delta, itemName);
+                if (tallyChanged == false) {
+                    errorCode = "Couldn't update item tally.";
+                    return CommandResult.failure;
+                }
+                return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
+            } catch (FunctionNotFoundException ex) {
+                ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.medium);
                 return CommandResult.failure;
             }
-            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
         }
-
     }
 
     public static class SetLimitCommand extends ModelCommand {
@@ -226,12 +232,17 @@ public abstract class ModelCommand extends Command<Model> {
 
         @Override
         public CommandResult execute(Model commandHandler) {
-            boolean set = commandHandler.getByName(functionTitle).getTab().setLimit(limit);
-            if (set == false) {
-                errorCode = "New limit was less than current balance.";
+            try {
+                boolean set = commandHandler.getByName(functionTitle).getTab().setLimit(limit);
+                if (set == false) {
+                    errorCode = "New limit was less than current balance.";
+                    return CommandResult.failure;
+                }
+                return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
+            } catch (FunctionNotFoundException ex) {
+                ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.medium);
                 return CommandResult.failure;
             }
-            return commandHandler.handle(new PassToViewCommand(new ViewCommand.UpdateFunctionComponent(commandHandler.getByName(functionTitle))));
         }
 
     }

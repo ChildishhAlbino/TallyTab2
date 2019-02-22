@@ -6,6 +6,8 @@
 package com.albinodevelopment.View.Function;
 
 import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
+import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.Model.Components.FunctionTab;
 import com.albinodevelopment.Model.Components.MenuItem;
@@ -81,12 +83,16 @@ public class FunctionTemplateController extends ContentViewComponent<Function> i
     }
 
     private void clearVBox(VBox vbox) {
-        ArrayList<ContentViewComponent> cvcs = getChildren(ContentViewComponent.class);
-        for (ContentViewComponent cvc : cvcs) {
-            if (vbox.getChildren().contains(cvc.getFromTemplate())) {
-                vbox.getChildren().remove(cvc.getFromTemplate());
-                remove(cvc);
+        try {
+            ArrayList<ContentViewComponent> cvcs = getChildren(ContentViewComponent.class);
+            for (ContentViewComponent cvc : cvcs) {
+                if (vbox.getChildren().contains(cvc.getFromTemplate())) {
+                    vbox.getChildren().remove(cvc.getFromTemplate());
+                    remove(cvc);
+                }
             }
+        } catch (ViewComponentNotFoundException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.medium);
         }
     }
 

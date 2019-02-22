@@ -6,6 +6,7 @@
 package com.albinodevelopment.View.Architecture;
 
 import com.albinodevelopment.Commands.ICommandHandler;
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
 import com.albinodevelopment.Logging.ConnorLogger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +25,7 @@ public abstract class ViewComponentParent implements IViewComponentParent, IComm
     }
 
     @Override
-    public <T> ArrayList<T> getChildren(Class<T> classFilter) {
+    public <T> ArrayList<T> getChildren(Class<T> classFilter) throws ViewComponentNotFoundException{
         ArrayList<T> childrenOfType = new ArrayList<>();
 
         for (ViewComponent child : children) {
@@ -32,6 +33,9 @@ public abstract class ViewComponentParent implements IViewComponentParent, IComm
                 ConnorLogger.log("Child was of class - " + classFilter.toString(), ConnorLogger.Priority.zero);
                 childrenOfType.add(classFilter.cast(child));
             }
+        }
+        if(childrenOfType.isEmpty()){
+            throw new ViewComponentNotFoundException("Could not find any children of type: " + classFilter.toString());
         }
         return childrenOfType;
     }

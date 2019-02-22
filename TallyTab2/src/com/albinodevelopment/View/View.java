@@ -8,6 +8,7 @@ package com.albinodevelopment.View;
 import com.albinodevelopment.Commands.ICommand;
 import com.albinodevelopment.Commands.ICommandHandler;
 import com.albinodevelopment.Controller.ControllerCommand;
+import com.albinodevelopment.Exceptions.ViewComponentNotFoundException;
 import com.albinodevelopment.Logging.ConnorLogger;
 import com.albinodevelopment.Model.Components.Function;
 import com.albinodevelopment.View.Architecture.IView;
@@ -31,7 +32,7 @@ import javafx.stage.Stage;
 public class View extends ViewComponentParent implements IView {
 
     private ICommandHandler<ControllerCommand> commandHandler;
-    
+
     @Override
     public ICommandHandler<ControllerCommand> getCommandHandler() {
         return commandHandler;
@@ -54,7 +55,7 @@ public class View extends ViewComponentParent implements IView {
         stage.setScene(scene);
         window.setStage(stage);
         window.show();
-        
+
         return window;
     }
 
@@ -64,15 +65,17 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public void openNewFunctionWindow() {
-        Collection<NewFunctionWindowController> newFunctionWindows = getChildren(NewFunctionWindowController.class);
-        if (newFunctionWindows.isEmpty()) {
+        try {
+            Collection<NewFunctionWindowController> newFunctionWindows = getChildren(NewFunctionWindowController.class);
+            Window window = newFunctionWindows.stream().findFirst().get();
+            window.show();
+        } catch (ViewComponentNotFoundException ex) {
+            ConnorLogger.log("New Function window was not found. Creating new one.", ConnorLogger.Priority.low);
+        } finally {
             Stage stage = new Stage();
             URL url = NewFunctionWindowController.class.getResource("NewFunctionWindowTemplate.fxml");
             Window window = newWindow(url, NewFunctionWindowController.class, stage);
             linkParentAndChild(this, window);
-        } else {
-            Window window = newFunctionWindows.stream().findFirst().get();
-            window.show();
         }
     }
 
@@ -96,8 +99,12 @@ public class View extends ViewComponentParent implements IView {
     }
 
     public void GenerateFunctionGUI(Function function) {
-        Collection<MainWindow> col = getChildren(MainWindow.class);
-        col.iterator().next().newTab(function);
+        try {
+            Collection<MainWindow> col = getChildren(MainWindow.class);
+            col.iterator().next().newTab(function);
+        } catch (ViewComponentNotFoundException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.extreme);
+        } 
     }
 
 }
