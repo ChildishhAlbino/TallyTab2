@@ -7,6 +7,7 @@ package com.albinodevelopment.Model.Architechture;
 
 import com.albinodevelopment.IO.XML.XML_able;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -19,7 +20,10 @@ public abstract class Content implements IContent, XML_able {
         this.file = file;
     }
 
-    public File getFile() {
+    public File getFile() throws FileNotFoundException{
+        if(file == null){
+            throw new FileNotFoundException("Content file was null.");
+        }
         return file;
     }
     
