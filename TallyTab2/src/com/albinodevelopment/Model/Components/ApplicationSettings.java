@@ -8,10 +8,9 @@ package com.albinodevelopment.Model.Components;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.IO.XML.JAXBParser;
 import com.albinodevelopment.Logging.ConnorLogger;
+import com.albinodevelopment.Model.Architechture.Content;
 import com.albinodevelopment.Model.Components.Setting.MasterMenuFilePathSetting;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 
 /**
@@ -20,7 +19,7 @@ import javax.xml.bind.JAXBException;
  */
 public class ApplicationSettings {
 
-    private static class SettingsManager {
+    private static class SettingsManager extends Content {
 
         public enum SettingType {
             masterFile,
