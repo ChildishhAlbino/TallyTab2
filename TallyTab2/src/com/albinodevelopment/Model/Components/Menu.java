@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlSeeAlso({MenuItem.class})
+@XmlSeeAlso({MenuItem.class, Content.class})
 public class Menu extends Content {
 
     private String title;

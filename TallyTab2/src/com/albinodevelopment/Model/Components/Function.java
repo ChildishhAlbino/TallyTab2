@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-@XmlSeeAlso({FunctionTab.class})
+@XmlSeeAlso({FunctionTab.class, Content.class})
 public class Function extends Content {
 
     private String title;

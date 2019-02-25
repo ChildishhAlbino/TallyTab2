@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-@XmlSeeAlso({Menu.class})
+@XmlSeeAlso({Menu.class, Content.class})
 public class FunctionTab extends Content {
 
     private Double limit;

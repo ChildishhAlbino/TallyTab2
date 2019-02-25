@@ -5,10 +5,14 @@
  */
 package com.albinodevelopment.Model.Components;
 
+import com.albinodevelopment.Exceptions.ContentException;
 import com.albinodevelopment.IO.FileIO;
 import com.albinodevelopment.IO.XML.JAXBParser;
 import com.albinodevelopment.Logging.ConnorLogger;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 
 /**
@@ -27,22 +31,24 @@ public class MenuBuilder {
     }
 
     public boolean save() {
-        boolean response = true;
+        File file;
+        boolean saved = false;
         try {
-            if (menu.getFile() == null) {
-                // new file
-                File file = new File(FileIO.getMenuDirectory(menu.getTitle() + ".xml"));
-                menu.setFile(file);
-                JAXBParser.getParser(Menu.class).write(file.getAbsolutePath(), menu);
-            } else {
-                JAXBParser.getParser(Menu.class).write(menu.getFile(), menu);
-            }
-        } catch (JAXBException ex) {
-            response = false;
-            ConnorLogger.log("Exception thrown while saving file: " + menu.getTitle(), ConnorLogger.Priority.high);
+            file = menu.getFile();
+        } catch (ContentException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.high);
+            file = new File(FileIO.getMenuDirectory(menu.getTitle() + ".xml"));
+            menu.setFile(file);
+            ConnorLogger.log(file.toString(), ConnorLogger.Priority.high);
         }
-
-        return response;
+        
+        try{
+            saved = JAXBParser.getParser(Menu.class).write(file, menu);
+        } catch (JAXBException ex) {
+            ConnorLogger.log(ex.getMessage(), ConnorLogger.Priority.high);
+        }
+        
+        return saved;
     }
 
     public boolean load(String filePath) {

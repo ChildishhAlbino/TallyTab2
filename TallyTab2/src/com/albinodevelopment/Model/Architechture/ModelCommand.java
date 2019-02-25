@@ -187,6 +187,7 @@ public abstract class ModelCommand extends Command<Model> {
         @Override
         public CommandResult execute(Model commandHandler) {
             boolean saved = commandHandler.getMenuBuilder().save();
+            errorCode = "Couldn't save menu.";
             return (saved == true ? CommandResult.success : CommandResult.failure);
         }
 

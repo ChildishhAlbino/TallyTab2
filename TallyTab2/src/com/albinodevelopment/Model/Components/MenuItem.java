@@ -9,6 +9,7 @@ import com.albinodevelopment.Model.Architechture.Content;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Item")
+@XmlSeeAlso({Content.class})
 public class MenuItem extends Content implements Comparable<MenuItem> {
 
     @Override
