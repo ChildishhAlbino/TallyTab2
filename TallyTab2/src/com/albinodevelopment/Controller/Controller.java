@@ -106,7 +106,7 @@ public class Controller implements ICommandHandler<ControllerCommand> {
         if (new File(filePath).exists()) {
             try {
                 Menu menu = JAXBParser.getParser(Menu.class).read(Menu.class, filePath);
-                if (!menu.equals(null)) {
+                if (menu != null) {
                     response = menu;
                 }
             } catch (JAXBException ex) {
